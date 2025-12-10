@@ -1,0 +1,12 @@
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "postgresql://postgres:BBWf6#-q72MiwzL@db.rbpyhlbyqbcbiiyxsbxd.supabase.co:5432/postgres"
+  }
+}

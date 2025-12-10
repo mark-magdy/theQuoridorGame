@@ -1,0 +1,34 @@
+# .gitignore for backend (.NET Core)
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables
+.env*
+
+# Docker
+.dockerignore
+
+# Others
+*.db
+*.sqlite

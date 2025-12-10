@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="quoridorBackend.Api/quoridorBackend.Api.csproj" />
+  <Project Path="quoridorBackend.BLL/quoridorBackend.BLL.csproj" />
+  <Project Path="quoridorBackend.DAL/quoridorBackend.DAL.csproj" />
+  <Project Path="quoridorBackend.Domain/quoridorBackend.Domain.csproj" />
+</Solution>
