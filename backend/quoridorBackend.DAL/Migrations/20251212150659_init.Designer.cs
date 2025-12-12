@@ -12,8 +12,8 @@ using QuoridorBackend.DAL.Data;
 namespace quoridorBackend.DAL.Migrations
 {
     [DbContext(typeof(QuoridorDbContext))]
-    [Migration("20251211233233_intin")]
-    partial class intin
+    [Migration("20251212150659_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
