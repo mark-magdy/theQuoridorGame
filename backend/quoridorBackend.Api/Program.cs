@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using QuoridorBackend.Api.Middleware;
+using QuoridorBackend.Api.Hubs;
 using QuoridorBackend.BLL.Services;
 using QuoridorBackend.BLL.Services.Interfaces;
 using QuoridorBackend.DAL.Data;
@@ -42,36 +43,71 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true,
         ClockSkew = TimeSpan.Zero
     };
+    
+    // Configure JWT for SignalR
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+            {
+                context.Token = accessToken;
+            }
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.AddAuthorization();
 
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAll",
+//         builder =>
+//         {
+//             builder.WithOrigins("http://localhost:3000")
+//                    .AllowAnyMethod()
+//                    .AllowAnyHeader()
+//                     .AllowCredentials();
+//         });
+// });
+
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        builder =>
-        {
-            builder.AllowAnyOrigin()
-                   .AllowAnyMethod()
-                   .AllowAnyHeader();
-        });
+    options.AddPolicy("FrontendOnly", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
 });
-
-
-
 
 // Repositories
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IGameRepository, GameRepository>();
 
+// Redis
+var redisConnection = builder.Configuration.GetConnectionString("Redis") ?? "localhost:6379";
+builder.Services.AddSingleton<StackExchange.Redis.IConnectionMultiplexer>(sp => 
+    StackExchange.Redis.ConnectionMultiplexer.Connect(redisConnection));
+
 // Services
+builder.Services.AddSingleton<ICacheService, RedisCacheService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGameValidationService, GameValidationService>();
 builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<IGameRoomService, GameRoomService>();
+
+// SignalR
+builder.Services.AddSignalR();
 
 // API
 builder.Services.AddOpenApi();
@@ -107,7 +143,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors("AllowAll");
+// app.UseCors("AllowAll");
+app.UseCors("FrontendOnly");
 
 
 
@@ -117,5 +154,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<GameHub>("/hubs/game");
 
 app.Run();

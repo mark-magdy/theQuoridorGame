@@ -52,4 +52,11 @@ export const authApi = {
       `/users/leaderboard?limit=${limit}&offset=${offset}`
     );
   },
+
+  /**
+   * Authenticate with Google
+   */
+  googleAuth: async (googleToken: string): Promise<AuthResponse> => {
+    return apiClient.post<AuthResponse>('/auth/google', { googleToken });
+  },
 };

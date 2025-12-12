@@ -158,8 +158,10 @@ namespace quoridorBackend.DAL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
+                    b.Property<string>("GoogleId")
+                        .HasColumnType("text");
+
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -174,6 +176,10 @@ namespace quoridorBackend.DAL.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("GoogleId")
+                        .IsUnique()
+                        .HasFilter("\"GoogleId\" IS NOT NULL");
 
                     b.HasIndex("Username")
                         .IsUnique();

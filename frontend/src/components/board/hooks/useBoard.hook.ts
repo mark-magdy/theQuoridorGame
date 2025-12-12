@@ -24,7 +24,6 @@ export function useBoard({
 
   const boardSize = gameState.boardSize;
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
-
   // Generate all cells on the board
   const cells = useMemo(() => {
     const cellArray: Position[] = [];

@@ -12,8 +12,8 @@ using QuoridorBackend.DAL.Data;
 namespace quoridorBackend.DAL.Migrations
 {
     [DbContext(typeof(QuoridorDbContext))]
-    [Migration("20251203172003_init")]
-    partial class init
+    [Migration("20251211233233_intin")]
+    partial class intin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,8 +161,10 @@ namespace quoridorBackend.DAL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
+                    b.Property<string>("GoogleId")
+                        .HasColumnType("text");
+
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -177,6 +179,10 @@ namespace quoridorBackend.DAL.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("GoogleId")
+                        .IsUnique()
+                        .HasFilter("\"GoogleId\" IS NOT NULL");
 
                     b.HasIndex("Username")
                         .IsUnique();

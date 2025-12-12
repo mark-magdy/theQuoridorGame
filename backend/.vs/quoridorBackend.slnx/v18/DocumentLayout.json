@@ -3,16 +3,116 @@
   "WorkspaceRootPath": "E:\\the project\\backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\controllers\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\controllers\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\auth\\googleauthrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\auth\\googleauthrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\auth\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\auth\\authresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251211230508_outh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:quoridorBackend.DAL\\Migrations\\20251211230508_outh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73758922-2381-EC10-7E3A-4A7112100D6E}|quoridorBackend.DAL\\quoridorBackend.DAL.csproj|e:\\the project\\backend\\quoridorbackend.dal\\quoridorbackend.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{73758922-2381-EC10-7E3A-4A7112100D6E}|quoridorBackend.DAL\\quoridorBackend.DAL.csproj|solutionrelative:quoridorbackend.dal\\quoridorbackend.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\quoridorbackend.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\quoridorbackend.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|e:\\the project\\backend\\quoridorbackend.bll\\services\\gameroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|solutionrelative:quoridorbackend.bll\\services\\gameroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|e:\\the project\\backend\\quoridorbackend.bll\\quoridorbackend.bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|solutionrelative:quoridorbackend.bll\\quoridorbackend.bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|e:\\the project\\backend\\quoridorbackend.bll\\services\\interfaces\\igameroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|solutionrelative:quoridorbackend.bll\\services\\interfaces\\igameroomservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\hubs\\gamehub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\gamedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\gamedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\gameroomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\gameroomdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\makemoveresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\makemoveresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\makemoverequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\makemoverequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\listgamesresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\listgamesresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\joingameresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\joingameresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\joingamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\joingamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\creategamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\creategamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\createbotgamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\createbotgamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\game\\availablemovesresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\game\\availablemovesresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|e:\\the project\\backend\\quoridorbackend.bll\\services\\interfaces\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|solutionrelative:quoridorbackend.bll\\services\\interfaces\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|e:\\the project\\backend\\quoridorbackend.bll\\services\\interfaces\\igamevalidationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|solutionrelative:quoridorbackend.bll\\services\\interfaces\\igamevalidationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|e:\\the project\\backend\\quoridorbackend.bll\\services\\interfaces\\igameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{651F4FB7-1333-EAEC-B484-03F8C1E82E31}|quoridorBackend.BLL\\quoridorBackend.BLL.csproj|solutionrelative:quoridorbackend.bll\\services\\interfaces\\igameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\entities\\gameroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\entities\\gameroom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\entities\\gameplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\entities\\gameplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\quoridorbackend.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\quoridorbackend.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\controllers\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\controllers\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -35,10 +135,6 @@
       "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|e:\\the project\\backend\\quoridorbackend.api\\quoridorbackend.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{C725FCF5-5B78-4C32-F23A-51AE91E0CB64}|quoridorBackend.Api\\quoridorBackend.Api.csproj|solutionrelative:quoridorbackend.api\\quoridorbackend.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\user\\userstatsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\user\\userstatsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -53,18 +149,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\dtos\\user\\leaderboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\dtos\\user\\leaderboarddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73758922-2381-EC10-7E3A-4A7112100D6E}|quoridorBackend.DAL\\quoridorBackend.DAL.csproj|e:\\the project\\backend\\quoridorbackend.dal\\quoridorbackend.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{73758922-2381-EC10-7E3A-4A7112100D6E}|quoridorBackend.DAL\\quoridorBackend.DAL.csproj|solutionrelative:quoridorbackend.dal\\quoridorbackend.dal.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|e:\\the project\\backend\\quoridorbackend.domain\\quoridorbackend.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{1013325C-A30D-20FF-14EE-10A140D0DD16}|quoridorBackend.Domain\\quoridorBackend.Domain.csproj|solutionrelative:quoridorbackend.domain\\quoridorbackend.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{73758922-2381-EC10-7E3A-4A7112100D6E}|quoridorBackend.DAL\\quoridorBackend.DAL.csproj|e:\\the project\\backend\\quoridorbackend.dal\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -150,193 +234,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Health.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Controllers\\Health.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\Controllers\\Health.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Controllers\\Health.cs",
-              "RelativeToolTip": "quoridorBackend.Api\\Controllers\\Health.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-07T18:29:59.373Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "quoridorBackend.Api.http",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.http",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\quoridorBackend.Api.http",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.http",
-              "RelativeToolTip": "quoridorBackend.Api\\quoridorBackend.Api.http",
+              "DocumentIndex": 1,
+              "Title": "GoogleAuthRequest.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Auth\\GoogleAuthRequest.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Auth\\GoogleAuthRequest.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Auth\\GoogleAuthRequest.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Auth\\GoogleAuthRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-12-07T18:29:11.662Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\Properties\\launchSettings.json",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Properties\\launchSettings.json",
-              "RelativeToolTip": "quoridorBackend.Api\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-07T18:20:20.139Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.json",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\appsettings.json",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.json",
-              "RelativeToolTip": "quoridorBackend.Api\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-03T16:10:41.948Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Dockerfile",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\Dockerfile",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Dockerfile",
-              "RelativeToolTip": "quoridorBackend.Api\\Dockerfile",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAABoAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-03T15:17:51.118Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T23:07:40.016Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "AuthResponse.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Auth\\AuthResponse.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Auth\\AuthResponse.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Auth\\AuthResponse.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Auth\\AuthResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T23:07:38.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20251211230508_outh.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251211230508_outh.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.DAL\\Migrations\\20251211230508_outh.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251211230508_outh.cs",
+              "RelativeToolTip": "quoridorBackend.DAL\\Migrations\\20251211230508_outh.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T23:05:09.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\Entities\\User.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\User.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T16:46:25.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GameRoomService.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\GameRoomService.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.BLL\\Services\\GameRoomService.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\GameRoomService.cs",
+              "RelativeToolTip": "quoridorBackend.BLL\\Services\\GameRoomService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAIAwwB8AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:39:00.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Program.cs",
               "RelativeDocumentMoniker": "quoridorBackend.Api\\Program.cs",
               "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Program.cs",
               "RelativeToolTip": "quoridorBackend.Api\\Program.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-03T14:56:12.055Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 13,
+              "Title": "MakeMoveResponse.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\MakeMoveResponse.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\MakeMoveResponse.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\MakeMoveResponse.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\MakeMoveResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:42.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "quoridorBackend.BLL.csproj",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\quoridorBackend.BLL.csproj",
               "RelativeDocumentMoniker": "quoridorBackend.BLL\\quoridorBackend.BLL.csproj",
               "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\quoridorBackend.BLL.csproj",
               "RelativeToolTip": "quoridorBackend.BLL\\quoridorBackend.BLL.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-12-03T16:27:07.867Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\appsettings.Development.json",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.Development.json",
-              "RelativeToolTip": "quoridorBackend.Api\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-07T18:20:11.977Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UserStatsDto.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
-              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T18:29:23.822Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "User.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\User.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.Domain\\Entities\\User.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\User.cs",
-              "RelativeToolTip": "quoridorBackend.Domain\\Entities\\User.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAkwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:46:25.618Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "quoridorBackend.Api.csproj",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.csproj",
-              "RelativeDocumentMoniker": "quoridorBackend.Api\\quoridorBackend.Api.csproj",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.csproj",
-              "RelativeToolTip": "quoridorBackend.Api\\quoridorBackend.Api.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-03T16:25:27.515Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "LeaderboardDto.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
-              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T18:29:11.381Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LeaderboardEntryDto.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
-              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T18:29:14.846Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UserProfileDto.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
-              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T18:29:19.789Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 5,
               "Title": "quoridorBackend.Domain.csproj",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\quoridorBackend.Domain.csproj",
               "RelativeDocumentMoniker": "quoridorBackend.Domain\\quoridorBackend.Domain.csproj",
@@ -349,31 +355,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "20251203172003_init.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
-              "RelativeToolTip": "quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T17:20:04.143Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\UserRepository.cs",
-              "ToolTip": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T17:00:16.883Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 4,
               "Title": "quoridorBackend.DAL.csproj",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\quoridorBackend.DAL.csproj",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\quoridorBackend.DAL.csproj",
@@ -386,7 +368,384 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GameDto.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\GameDto.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\GameDto.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\GameDto.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\GameDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:36.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IGameRoomService.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IGameRoomService.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.BLL\\Services\\Interfaces\\IGameRoomService.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IGameRoomService.cs",
+              "RelativeToolTip": "quoridorBackend.BLL\\Services\\Interfaces\\IGameRoomService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:39:28.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GameRoomDto.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\GameRoomDto.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\GameRoomDto.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\GameRoomDto.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\GameRoomDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:44.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GameHub.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Hubs\\GameHub.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\Hubs\\GameHub.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Hubs\\GameHub.cs",
+              "RelativeToolTip": "quoridorBackend.Api\\Hubs\\GameHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:42:38.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MakeMoveRequest.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\MakeMoveRequest.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\MakeMoveRequest.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\MakeMoveRequest.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\MakeMoveRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:40.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ListGamesResponse.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\ListGamesResponse.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\ListGamesResponse.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\ListGamesResponse.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\ListGamesResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:39.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "JoinGameResponse.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\JoinGameResponse.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\JoinGameResponse.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\JoinGameResponse.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\JoinGameResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:39.008Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 17,
+              "Title": "JoinGameRequest.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\JoinGameRequest.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\JoinGameRequest.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\JoinGameRequest.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\JoinGameRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:38.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CreateGameRequest.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\CreateGameRequest.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\CreateGameRequest.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\CreateGameRequest.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\CreateGameRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:35.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CreateBotGameRequest.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\CreateBotGameRequest.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\CreateBotGameRequest.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\CreateBotGameRequest.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\CreateBotGameRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:34.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AvailableMovesResponse.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\AvailableMovesResponse.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\Game\\AvailableMovesResponse.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\Game\\AvailableMovesResponse.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\Game\\AvailableMovesResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:40:33.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IJwtService.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IJwtService.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.BLL\\Services\\Interfaces\\IJwtService.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IJwtService.cs",
+              "RelativeToolTip": "quoridorBackend.BLL\\Services\\Interfaces\\IJwtService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:39:39.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IGameValidationService.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IGameValidationService.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.BLL\\Services\\Interfaces\\IGameValidationService.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IGameValidationService.cs",
+              "RelativeToolTip": "quoridorBackend.BLL\\Services\\Interfaces\\IGameValidationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:39:38.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "IGameService.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IGameService.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.BLL\\Services\\Interfaces\\IGameService.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\Services\\Interfaces\\IGameService.cs",
+              "RelativeToolTip": "quoridorBackend.BLL\\Services\\Interfaces\\IGameService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:39:37.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "GamePlayer.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\GamePlayer.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\Entities\\GamePlayer.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\GamePlayer.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\Entities\\GamePlayer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:38:06.904Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "GameRoom.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\GameRoom.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\Entities\\GameRoom.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\GameRoom.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\Entities\\GameRoom.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T12:37:26.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Health.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Controllers\\Health.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\Controllers\\Health.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Controllers\\Health.cs",
+              "RelativeToolTip": "quoridorBackend.Api\\Controllers\\Health.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-07T18:29:59.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\Properties\\launchSettings.json",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Properties\\launchSettings.json",
+              "RelativeToolTip": "quoridorBackend.Api\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-07T18:20:20.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\appsettings.json",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.json",
+              "RelativeToolTip": "quoridorBackend.Api\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-03T16:10:41.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Dockerfile",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\Dockerfile",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\Dockerfile",
+              "RelativeToolTip": "quoridorBackend.Api\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBoAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-03T15:17:51.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "quoridorBackend.Api.csproj",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.csproj",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\quoridorBackend.Api.csproj",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.csproj",
+              "RelativeToolTip": "quoridorBackend.Api\\quoridorBackend.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-03T16:25:27.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "quoridorBackend.Api.http",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.http",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\quoridorBackend.Api.http",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\quoridorBackend.Api.http",
+              "RelativeToolTip": "quoridorBackend.Api\\quoridorBackend.Api.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-12-07T18:29:11.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "quoridorBackend.Api\\appsettings.Development.json",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Api\\appsettings.Development.json",
+              "RelativeToolTip": "quoridorBackend.Api\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-07T18:20:11.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "UserStatsDto.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\UserStatsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T18:29:23.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LeaderboardDto.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T18:29:11.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "LeaderboardEntryDto.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\LeaderboardEntryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T18:29:14.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "UserProfileDto.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
+              "RelativeToolTip": "quoridorBackend.Domain\\DTOs\\User\\UserProfileDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T18:29:19.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "20251203172003_init.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
+              "RelativeToolTip": "quoridorBackend.DAL\\Migrations\\20251203172003_init.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T17:20:04.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\UserRepository.cs",
+              "ToolTip": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-03T17:00:16.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\UnitOfWork.cs",
@@ -394,11 +753,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\UnitOfWork.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:59:41.726Z"
+              "WhenOpened": "2025-12-03T16:59:41.726Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 39,
               "Title": "Repository.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\Repository.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\Repository.cs",
@@ -406,11 +766,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\Repository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T17:00:10.085Z"
+              "WhenOpened": "2025-12-03T17:00:10.085Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 41,
               "Title": "IUserRepository.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\Interfaces\\IUserRepository.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\Interfaces\\IUserRepository.cs",
@@ -418,11 +779,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\Interfaces\\IUserRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:32.666Z"
+              "WhenOpened": "2025-12-03T16:53:32.666Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 42,
               "Title": "IUnitOfWork.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\Interfaces\\IUnitOfWork.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\Interfaces\\IUnitOfWork.cs",
@@ -430,11 +792,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\Interfaces\\IUnitOfWork.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:30.947Z"
+              "WhenOpened": "2025-12-03T16:53:30.947Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 43,
               "Title": "IRepository.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\Interfaces\\IRepository.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\Interfaces\\IRepository.cs",
@@ -442,11 +805,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\Interfaces\\IRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:30.347Z"
+              "WhenOpened": "2025-12-03T16:53:30.347Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 40,
               "Title": "GameRepository.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\GameRepository.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\GameRepository.cs",
@@ -454,11 +818,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\GameRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:25.786Z"
+              "WhenOpened": "2025-12-03T16:53:25.786Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 44,
               "Title": "IGameRepository.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Repositories\\Interfaces\\IGameRepository.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Repositories\\Interfaces\\IGameRepository.cs",
@@ -466,11 +831,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Repositories\\Interfaces\\IGameRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:28.45Z"
+              "WhenOpened": "2025-12-03T16:53:28.45Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 46,
               "Title": "UserStatsConfiguration.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Configurations\\UserStatsConfiguration.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Configurations\\UserStatsConfiguration.cs",
@@ -478,11 +844,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Configurations\\UserStatsConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:16.699Z"
+              "WhenOpened": "2025-12-03T16:53:16.699Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 47,
               "Title": "UserConfiguration.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Configurations\\UserConfiguration.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Configurations\\UserConfiguration.cs",
@@ -490,11 +857,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Configurations\\UserConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:15.066Z"
+              "WhenOpened": "2025-12-03T16:53:15.066Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 48,
               "Title": "GamePlayerConfiguration.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Configurations\\GamePlayerConfiguration.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Configurations\\GamePlayerConfiguration.cs",
@@ -502,11 +870,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Configurations\\GamePlayerConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:13.73Z"
+              "WhenOpened": "2025-12-03T16:53:13.73Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 49,
               "Title": "GameMoveConfiguration.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Configurations\\GameMoveConfiguration.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Configurations\\GameMoveConfiguration.cs",
@@ -514,11 +883,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Configurations\\GameMoveConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:53:11.527Z"
+              "WhenOpened": "2025-12-03T16:53:11.527Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 45,
               "Title": "QuoridorDbContext.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Data\\QuoridorDbContext.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Data\\QuoridorDbContext.cs",
@@ -526,11 +896,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Data\\QuoridorDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:18:39.981Z"
+              "WhenOpened": "2025-12-03T16:18:39.981Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 50,
               "Title": "GameConfiguration.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.DAL\\Configurations\\GameConfiguration.cs",
               "RelativeDocumentMoniker": "quoridorBackend.DAL\\Configurations\\GameConfiguration.cs",
@@ -538,11 +909,12 @@
               "RelativeToolTip": "quoridorBackend.DAL\\Configurations\\GameConfiguration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:52:27.898Z"
+              "WhenOpened": "2025-12-03T16:52:27.898Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 51,
               "Title": "GameMove.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\GameMove.cs",
               "RelativeDocumentMoniker": "quoridorBackend.Domain\\Entities\\GameMove.cs",
@@ -550,11 +922,12 @@
               "RelativeToolTip": "quoridorBackend.Domain\\Entities\\GameMove.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:46:24.924Z"
+              "WhenOpened": "2025-12-03T16:46:24.924Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 52,
               "Title": "Game.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Domain\\Entities\\Game.cs",
               "RelativeDocumentMoniker": "quoridorBackend.Domain\\Entities\\Game.cs",
@@ -562,23 +935,23 @@
               "RelativeToolTip": "quoridorBackend.Domain\\Entities\\Game.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T16:46:23.922Z"
+              "WhenOpened": "2025-12-03T16:46:23.922Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 55,
               "Title": "Class1.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.BLL\\Class1.cs",
               "RelativeDocumentMoniker": "quoridorBackend.BLL\\Class1.cs",
               "ToolTip": "E:\\the project\\backend\\quoridorBackend.BLL\\Class1.cs",
               "RelativeToolTip": "quoridorBackend.BLL\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-03T15:13:05.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 53,
               "Title": "GamesController.cs",
               "DocumentMoniker": "E:\\the project\\backend\\quoridorBackend.Api\\Controllers\\GamesController.cs",
               "RelativeDocumentMoniker": "quoridorBackend.Api\\Controllers\\GamesController.cs",
@@ -586,7 +959,16 @@
               "RelativeToolTip": "quoridorBackend.Api\\Controllers\\GamesController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-03T15:12:46.966Z"
+              "WhenOpened": "2025-12-03T15:12:46.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             }
           ]
         }

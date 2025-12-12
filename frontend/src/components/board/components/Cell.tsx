@@ -7,6 +7,7 @@ interface CellProps {
   cellSize: number;
   isValidMove: boolean;
   isSelected: boolean;
+  isCurrentPlayer:boolean; 
   onClick: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -17,6 +18,7 @@ const Cell: React.FC<CellProps> = ({
   cellSize,
   isValidMove,
   isSelected,
+  isCurrentPlayer,
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -43,7 +45,7 @@ const Cell: React.FC<CellProps> = ({
       transition={{ duration: 0.1 }}
     >
       {/* Valid move indicator */}
-      {isValidMove && (
+      {isValidMove && isCurrentPlayer && (
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}

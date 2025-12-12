@@ -84,4 +84,39 @@ public class AuthController : ControllerBase
             return StatusCode(500, new ErrorResponse { Message = "Login failed. Please try again." });
         }
     }
+
+    /// <summary>
+    /// Authenticate with Google
+    /// </summary>
+    /// <param name="request">Google authentication token</param>
+    /// <returns>User information and JWT token</returns>
+    /// <response code="200">Successfully authenticated</response>
+    /// <response code="401">Invalid Google token</response>
+    [HttpPost("google")]
+    [ProducesResponseType(typeof(AuthResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<AuthResponse>> GoogleAuth([FromBody] GoogleAuthRequest request)
+    {
+        try
+        {
+            var response = await _authService.GoogleAuthAsync(request);
+            _logger.LogInformation("User authenticated with Google successfully");
+            return Ok(response);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            _logger.LogWarning("Google authentication failed: {Message}", ex.Message);
+            return Unauthorized(new ErrorResponse { Message = ex.Message });
+        }
+        catch (InvalidOperationException ex)
+        {
+            _logger.LogError(ex, "Google authentication configuration error");
+            return StatusCode(500, new ErrorResponse { Message = "Authentication service not properly configured" });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Unexpected error during Google authentication");
+            return StatusCode(500, new ErrorResponse { Message = "Authentication failed. Please try again." });
+        }
+    }
 }

@@ -28,7 +28,8 @@ const Board: React.FC<BoardProps> = ({
   const boardSize = gameState.boardSize;
   const totalSize = boardSize * cellSize;
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
-
+  const me = localStorage.getItem('userId');
+  const isCurrentPlayer = currentPlayer.userId === me;
   // If game is not loaded yet, show loading state
   if (!currentPlayer) {
     return (
@@ -57,7 +58,7 @@ const Board: React.FC<BoardProps> = ({
     setIsPlacingWall,
     setPlacementError,
   });
-    
+
   return (
     <div className="flex flex-col items-center gap-4 w-full">
       {/* Mode Toggle - Slider */}
@@ -74,7 +75,7 @@ const Board: React.FC<BoardProps> = ({
           rightLabel="Place Wall"
           leftIcon="🚶"
           rightIcon="🧱"
-          disabled={!currentPlayer || currentPlayer.wallsRemaining <= 0 || gameState.gameStatus !== 'Playing'}
+          disabled={!currentPlayer || !isCurrentPlayer || currentPlayer.wallsRemaining <= 0 || gameState.gameStatus !== 'Playing'}
         />
       </div>
 
@@ -101,6 +102,7 @@ const Board: React.FC<BoardProps> = ({
           {/* Cells */}
           {cells.map((position) => (
             <Cell
+              isCurrentPlayer={isCurrentPlayer}
               key={`${position.row}-${position.col}`}
               position={position}
               cellSize={cellSize}

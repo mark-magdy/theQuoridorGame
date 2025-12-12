@@ -13,8 +13,9 @@ public class User
     [Required, MaxLength(255)]
     public string Email { get; set; } = string.Empty;
     
-    [Required]
-    public string PasswordHash { get; set; } = string.Empty;
+    public string? PasswordHash { get; set; }
+    
+    public string? GoogleId { get; set; }
     
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;

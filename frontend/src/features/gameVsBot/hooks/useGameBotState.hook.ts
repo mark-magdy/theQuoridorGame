@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { GameState, Position, Wall, Move } from '@/types/gameTypes';
-import { gameApi, BotDifficulty, MakeMoveRequest } from '@/lib/gameApi';
-
+import { gameApi, MakeMoveRequest } from '@/lib/gameApi';
+import { BotDifficulty} from "@/lib/utils";
+ 
 const initialGameState: GameState = {
   boardSize: 9,
   players: [],
@@ -43,7 +44,7 @@ export function useGameState() {
       const gameDto = await gameApi.getGame(id);
       setGameId(id);
       setGameState(gameDto.gameState);
-      
+      console.log(">>>> game", gameDto.gameState);
       // Check if it's player's turn
       const currentPlayer = gameDto.gameState.players[gameDto.gameState.currentPlayerIndex];
       setIsPlayerTurn(currentPlayer.type !== 'Bot');

@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Button from '@/components/common/Button';
 import Icon from '@/components/common/Icon';
-import { BotDifficulty } from '@/lib/gameApi';
+import { BotDifficulty } from '@/lib/utils';
 
 interface BotDifficultyModalProps {
   onSelect: (difficulty: BotDifficulty) => void;

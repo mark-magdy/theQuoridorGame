@@ -1,0 +1,152 @@
+"use client";
+
+import Board from "@/components/board/Board";
+import Button from "@/components/common/Button";
+import { useMultiplayerGame } from "./hooks/useMultiplayerGame";
+
+export default function MultiPlayerGamePage() {
+  const {
+    room,
+    gameState,
+    isGameStarted,
+    isConnected,
+    error,
+    copySuccess,
+    isHost,
+    canStartGame,
+    isCurrentPlayerTurn,
+    isSpectator,
+    currentUserPlayer,
+    handleStartGame,
+    handleLeaveRoom,
+    handleCopyRoomId,
+    handlePawnMove,
+    handleWallPlace,
+  } = useMultiplayerGame();
+
+  if (!room) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Loading room...</p>
+      </div>
+    );
+  }
+  console.log("Room ", room);
+  if (!isConnected) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-xl mb-2">Connecting to game server...</p>
+          {error && <p className="text-red-500">{error}</p>}
+        </div>
+      </div>
+    );
+  }
+  console.log(">> game state: ", gameState);
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-4">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mb-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-2xl font-bold text-white mb-2">Multiplayer Game</h1>
+              <div className="flex items-center gap-2">
+                <span className="text-white/80">Room ID:</span>
+                <span className="text-xl font-mono text-white bg-black/30 px-3 py-1 rounded">
+                  {room.roomId}
+                </span>
+                <Button
+                  onClick={handleCopyRoomId}
+                  className="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700"
+                >
+                  {copySuccess ? "Copied!" : "Copy"}
+                </Button>
+              </div>
+            </div>
+            <Button
+              onClick={handleLeaveRoom}
+              className="px-4 py-2 bg-red-600 hover:bg-red-700"
+            >
+              Leave Room
+            </Button>
+          </div>
+        </div>
+
+        {/* Waiting Room */}
+        {!isGameStarted && (
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 mb-4">
+            <h2 className="text-xl font-bold text-white mb-4">
+              Waiting for players... ({room.currentPlayers}/{room.maxPlayers})
+            </h2>
+            
+            <div className="space-y-2 mb-6">
+              {room.players.map((player) => (
+                <div
+                  key={player.userId}
+                  className="bg-white/5 rounded px-4 py-2 flex justify-between items-center"
+                >
+                  <span className="text-white">
+                    {player.username}
+                    {player.isHost && <span className="ml-2 text-yellow-400">(Host)</span>}
+                  </span>
+                  <span className={player.isReady ? "text-green-400" : "text-gray-400"}>
+                    {player.isReady ? "Ready" : "Not Ready"}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {canStartGame && (
+              <Button
+                onClick={handleStartGame}
+                className="w-full py-3 bg-green-600 hover:bg-green-700 text-lg font-bold"
+              >
+                Start Game
+              </Button>
+            )}
+
+            {!isHost && (
+              <p className="text-white/60 text-center">Waiting for host to start the game...</p>
+            )}
+          </div>
+        )}
+
+        {/* Game Board */}
+        {isGameStarted && gameState && (
+          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6">
+            {/* Game Info */}
+            <div className="mb-4 flex justify-between items-center">
+              <div className="text-white">
+                <span className="font-bold">Current Turn: </span>
+                <span className="text-lg">
+                  {gameState.players[gameState.currentPlayerIndex]?.name || `Player ${gameState.currentPlayerIndex + 1}`}
+                </span>
+              </div>
+              {isSpectator && (
+                <div className="bg-yellow-500/20 text-yellow-300 px-4 py-2 rounded">
+                  👁️ Spectator Mode
+                </div>
+              )}
+              {!isCurrentPlayerTurn && !isSpectator && (
+                <div className="bg-blue-500/20 text-blue-300 px-4 py-2 rounded">
+                  Waiting for opponent...
+                </div>
+              )}
+              {isCurrentPlayerTurn && (
+                <div className="bg-green-500/20 text-green-300 px-4 py-2 rounded animate-pulse">
+                  Your Turn!
+                </div>
+              )}
+            </div>
+            <Board
+              gameState={gameState}
+              onPawnMove={isCurrentPlayerTurn ? handlePawnMove : () => {}}
+              onWallPlace={isCurrentPlayerTurn ? handleWallPlace : async () => false}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

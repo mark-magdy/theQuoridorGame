@@ -5,6 +5,7 @@ import { useAuth } from '@/features/auth/context/AuthContext';
 import { ApiError } from '@/lib/apiClient';
 import Button from '@/components/common/Button';
 import Icon from '@/components/common/Icon';
+import GoogleSignInButton from './GoogleSignInButton';
 
 interface LoginFormProps {
   onSuccess?: () => void;
@@ -94,6 +95,20 @@ export default function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormPr
           </>
         )}
       </Button>
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+        </div>
+        <div className="relative flex justify-center text-sm">
+          <span className="px-2 bg-white dark:bg-gray-800 text-gray-500">Or continue with</span>
+        </div>
+      </div>
+
+      <GoogleSignInButton
+        onSuccess={onSuccess}
+        onError={setError}
+      />
 
       {onSwitchToRegister && (
         <p className="text-center text-sm text-gray-600 dark:text-gray-400">

@@ -72,7 +72,7 @@ export default function GameVsBot() {
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
   const isGameFinished = gameState.gameStatus === 'Finished';
   const winner = gameState.winner !== null ? gameState.players.find(p => p.id === gameState.winner) : null;
-
+  console.log("gameState " , gameState);
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
       <div className="max-w-7xl mx-auto">

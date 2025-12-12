@@ -13,12 +13,14 @@ public class GameService : IGameService
     private readonly IUnitOfWork _unitOfWork;
     private readonly IGameRepository _gameRepository;
     private readonly IGameValidationService _validationService;
+    private readonly ICacheService _cacheService;
 
-    public GameService(IUnitOfWork unitOfWork, IGameRepository gameRepository, IGameValidationService validationService)
+    public GameService(IUnitOfWork unitOfWork, IGameRepository gameRepository, IGameValidationService validationService, ICacheService cacheService)
     {
         _unitOfWork = unitOfWork;
         _gameRepository = gameRepository;
         _validationService = validationService;
+        _cacheService = cacheService;
     }
 
     public async Task<CreateGameResponse> CreateBotGameAsync(Guid userId, CreateBotGameRequest request)
@@ -43,6 +45,86 @@ public class GameService : IGameService
         await _gameRepository.AddAsync(game);
         await _unitOfWork.SaveChangesAsync();
 
+        // Cache the game
+        var gameDto = new GameDto
+        {
+            Id = game.Id,
+            GameState = gameState,
+            Settings = request.Settings,
+            Status = game.Status,
+            CreatedAt = game.CreatedAt,
+            StartedAt = game.StartedAt,
+            IsPrivate = game.IsPrivate
+        };
+        await _cacheService.SetAsync($"game:{game.Id}", gameDto, TimeSpan.FromHours(2));
+
+        // Invalidate user's game list cache
+        await _cacheService.RemoveAsync($"user_games:{userId}");
+
+        return new CreateGameResponse
+        {
+            GameId = game.Id,
+            GameState = gameState
+        };
+    }
+
+    public async Task<CreateGameResponse> CreateMultiplayerGameAsync(List<Guid> playerUserIds, GameSettings settings)
+    {
+        if (playerUserIds.Count < 2 || playerUserIds.Count > 4)
+            throw new ArgumentException("Multiplayer games must have between 2 and 4 players");
+
+        if (playerUserIds.Count != settings.PlayerCount)
+            throw new ArgumentException("Number of player IDs must match PlayerCount in settings");
+
+        // Initialize multiplayer game state
+        var gameState = InitializeMultiplayerGameState(playerUserIds, settings);
+        
+        // Create game entity - use first player as creator for database reference
+        var game = new Game
+        {
+            Id = Guid.NewGuid(),
+            GameStateJson = JsonSerializer.Serialize(gameState),
+            SettingsJson = JsonSerializer.Serialize(settings),
+            Status = "playing",
+            CreatedBy = playerUserIds[0], // First player (host) is the creator
+            IsPrivate = true,
+            StartedAt = DateTime.UtcNow,
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+
+        // Create GamePlayer entries for all players
+        for (int i = 0; i < playerUserIds.Count; i++)
+        {
+            game.GamePlayers.Add(new GamePlayer
+            {
+                GameId = game.Id,
+                UserId = playerUserIds[i],
+                PlayerId = i,
+                JoinedAt = DateTime.UtcNow
+            });
+        }
+
+        await _gameRepository.AddAsync(game);
+        await _unitOfWork.SaveChangesAsync();
+
+        // Cache the game
+        var gameDto = new GameDto
+        {
+            Id = game.Id,
+            GameState = gameState,
+            Settings = settings,
+            Status = game.Status,
+            CreatedAt = game.CreatedAt,
+            StartedAt = game.StartedAt,
+            IsPrivate = game.IsPrivate
+        };
+        await _cacheService.SetAsync($"game:{game.Id}", gameDto, TimeSpan.FromHours(2));
+
+        // Invalidate all players' game list caches
+        var cacheKeys = playerUserIds.Select(id => $"user_games:{id}").ToArray();
+        await _cacheService.RemoveAsync(cacheKeys);
+
         return new CreateGameResponse
         {
             GameId = game.Id,
@@ -52,11 +134,13 @@ public class GameService : IGameService
 
     public async Task<MakeMoveResponse> MakeMoveAsync(Guid gameId, Guid userId, MakeMoveRequest request)
     {
-        var game = await _gameRepository.GetByIdAsync(gameId);
+        var game = await _gameRepository.GetWithPlayersAsync(gameId);
         if (game == null)
             return new MakeMoveResponse { IsValid = false, Error = "Game not found" };
 
-        if (game.CreatedBy != userId)
+        // Check if user is a player in this game (either creator or in GamePlayers)
+        var isPlayer = game.CreatedBy == userId || game.GamePlayers.Any(p => p.UserId == userId);
+        if (!isPlayer)
             return new MakeMoveResponse { IsValid = false, Error = "Unauthorized" };
 
         var gameState = JsonSerializer.Deserialize<GameState>(game.GameStateJson);
@@ -105,6 +189,30 @@ public class GameService : IGameService
 
         await _unitOfWork.SaveChangesAsync();
 
+        // Update cache with new game state
+        var settings = JsonSerializer.Deserialize<GameSettings>(game.SettingsJson);
+        var updatedGameDto = new GameDto
+        {
+            Id = game.Id,
+            GameState = gameState,
+            Settings = settings!,
+            Status = game.Status,
+            CreatedAt = game.CreatedAt,
+            StartedAt = game.StartedAt,
+            FinishedAt = game.FinishedAt,
+            IsPrivate = game.IsPrivate
+        };
+        await _cacheService.SetAsync($"game:{game.Id}", updatedGameDto, TimeSpan.FromHours(2));
+
+        // Invalidate game lists for all players
+        var playerIds = game.GamePlayers.Select(p => p.UserId).ToList();
+        if (game.CreatedBy != Guid.Empty && !playerIds.Contains(game.CreatedBy))
+        {
+            playerIds.Add(game.CreatedBy);
+        }
+        var cacheKeys = playerIds.Select(id => $"user_games:{id}").ToArray();
+        await _cacheService.RemoveAsync(cacheKeys);
+
         return new MakeMoveResponse
         {
             IsValid = true,
@@ -123,23 +231,44 @@ public class GameService : IGameService
 
         await _gameRepository.DeleteAsync(game);
         await _unitOfWork.SaveChangesAsync();
+
+        // Remove game from cache
+        await _cacheService.RemoveAsync($"game:{gameId}");
+        
+        // Invalidate user's game list cache
+        await _cacheService.RemoveAsync($"user_games:{userId}");
+
         return true;
     }
 
     public async Task<GameDto?> GetGameAsync(Guid gameId, Guid userId)
     {
-        var game = await _gameRepository.GetByIdAsync(gameId);
+        // Try to get from cache first
+        var cacheKey = $"game:{gameId}";
+        var cachedGame = await _cacheService.GetAsync<GameDto>(cacheKey);
+        
+        if (cachedGame != null)
+        {
+            // Verify user has access to this cached game
+            var hasAccess = cachedGame.GameState.Players.Any(p => p.UserId == userId.ToString());
+            if (hasAccess)
+                return cachedGame;
+        }
+
+        // If not in cache or no access, get from database
+        var game = await _gameRepository.GetWithPlayersAsync(gameId);
         if (game == null)
             return null;
 
-        // Verify user has access to this game
-        if (game.CreatedBy != userId)
+        // Verify user has access to this game (either creator or a player)
+        var isPlayer = game.CreatedBy == userId || game.GamePlayers.Any(p => p.UserId == userId);
+        if (!isPlayer)
             return null;
 
         var gameState = JsonSerializer.Deserialize<GameState>(game.GameStateJson);
         var settings = JsonSerializer.Deserialize<GameSettings>(game.SettingsJson);
 
-        return new GameDto
+        var gameDto = new GameDto
         {
             Id = game.Id,
             GameState = gameState!,
@@ -150,10 +279,23 @@ public class GameService : IGameService
             FinishedAt = game.FinishedAt,
             IsPrivate = game.IsPrivate
         };
+
+        // Cache for future requests
+        await _cacheService.SetAsync(cacheKey, gameDto, TimeSpan.FromHours(2));
+
+        return gameDto;
     }
 
     public async Task<IEnumerable<GameDto>> GetUserGamesAsync(Guid userId)
     {
+        // Try to get from cache first
+        var cacheKey = $"user_games:{userId}";
+        var cachedGames = await _cacheService.GetAsync<List<GameDto>>(cacheKey);
+        
+        if (cachedGames != null)
+            return cachedGames;
+
+        // If not in cache, get from database
         var games = await _gameRepository.GetAllAsync();
         var userGames = games.Where(g => g.CreatedBy == userId && g.Status != "finished")
                              .OrderByDescending(g => g.UpdatedAt);
@@ -176,6 +318,9 @@ public class GameService : IGameService
                 IsPrivate = game.IsPrivate
             });
         }
+
+        // Cache for 10 minutes (shorter since this changes more frequently)
+        await _cacheService.SetAsync(cacheKey, gameDtos, TimeSpan.FromMinutes(10));
 
         return gameDtos;
     }
@@ -272,6 +417,50 @@ public class GameService : IGameService
 
             // Set starting position and goal based on player index
             SetPlayerStartPositionAndGoal(player, i, settings.BoardSize, settings.PlayerCount);
+            gameState.Players.Add(player);
+        }
+
+        return gameState;
+    }
+
+    private GameState InitializeMultiplayerGameState(List<Guid> playerUserIds, GameSettings settings)
+    {
+        var gameState = new GameState
+        {
+            BoardSize = settings.BoardSize,
+            CurrentPlayerIndex = 0,
+            GameStatus = GameStatus.Playing,
+            Players = new List<Player>(),
+            Walls = new List<Wall>(),
+            MoveHistory = new List<Move>(),
+            HistoryIndex = 0
+        };
+
+        // Determine walls per player based on player count
+        int wallsPerPlayer = playerUserIds.Count switch
+        {
+            2 => 10,
+            3 => 7,
+            4 => 5,
+            _ => 10
+        };
+
+        // Create human players for all participants
+        for (int i = 0; i < playerUserIds.Count; i++)
+        {
+            var player = new Player
+            {
+                Id = i,
+                Color = (PlayerColor)i,
+                WallsRemaining = wallsPerPlayer,
+                Type = PlayerType.Human,
+                BotDifficulty = null,
+                Name = $"Player {i + 1}",
+                UserId = playerUserIds[i].ToString()
+            };
+
+            // Set starting position and goal based on player index
+            SetPlayerStartPositionAndGoal(player, i, settings.BoardSize, playerUserIds.Count);
             gameState.Players.Add(player);
         }
 
@@ -399,15 +588,15 @@ public class GameService : IGameService
         };
     }
 
-    // private bool HasReachedGoal(Player player, int boardSize)
-    // {
-    //     if (player.GoalRow == -1)
-    //     {
-    //         // Horizontal goal (for 4-player game)
-    //         return player.Position.Col == 0 || player.Position.Col == boardSize - 1;
-    //     }
-    //     return player.Position.Row == player.GoalRow;
-    // }
+    private bool HasReachedGoal(Player player, int boardSize)
+    {
+        if (player.GoalRow == -1)
+        {
+            // Horizontal goal (for 4-player game)
+            return player.Position.Col == 0 || player.Position.Col == boardSize - 1;
+        }
+        return player.Position.Row == player.GoalRow;
+    }
 
     private Move? GenerateBotMove(GameState gameState, Player botPlayer)
     {

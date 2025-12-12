@@ -18,6 +18,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (data: LoginRequest) => Promise<void>;
   register: (data: RegisterRequest) => Promise<void>;
+  googleAuth: (googleToken: string) => Promise<void>;
   logout: () => void;
   refreshProfile: () => Promise<void>;
 }
@@ -42,6 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             email: userProfile.email,
             createdAt: userProfile.createdAt,
           });
+          localStorage.setItem('userId', userProfile.id);
           setProfile(userProfile);
         } catch (error) {
           // Token is invalid, clear it
@@ -80,6 +82,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setProfile(null);
   };
 
+  const googleAuth = async (googleToken: string) => {
+    const response: AuthResponse = await authApi.googleAuth(googleToken);
+    apiClient.setToken(response.token);
+    setUser(response.user);
+    
+    // Fetch full profile
+    const userProfile = await authApi.getMyProfile();
+    setProfile(userProfile);
+  };
+
   const refreshProfile = async () => {
     if (user) {
       const userProfile = await authApi.getMyProfile();
@@ -96,6 +108,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthenticated: !!user,
         login,
         register,
+        googleAuth,
         logout,
         refreshProfile,
       }}

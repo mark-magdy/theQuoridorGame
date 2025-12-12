@@ -8,8 +8,8 @@ import Tooltip from '@/components/common/Tooltip';
 
 
 
-export default function MainMenu({ startNewGame, isCreatingGame, isAuthenticated, hasSave, continueSavedGame, setShowSettings, setShowAbout }
-    : { startNewGame: () => void; isCreatingGame: boolean; isAuthenticated: boolean; hasSave: boolean; continueSavedGame: () => void; setShowSettings: React.Dispatch<React.SetStateAction<boolean>>; setShowAbout: React.Dispatch<React.SetStateAction<boolean>>; }) {
+export default function MainMenu({ startNewGame, isCreatingGame, isAuthenticated, hasSave, continueSavedGame, setShowSettings, setShowAbout, onPlayWithFriend }
+    : { startNewGame: () => void; isCreatingGame: boolean; isAuthenticated: boolean; hasSave: boolean; continueSavedGame: () => void; setShowSettings: React.Dispatch<React.SetStateAction<boolean>>; setShowAbout: React.Dispatch<React.SetStateAction<boolean>>; onPlayWithFriend: () => void; }) {
     return (<motion.div
         className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 space-y-4"
         initial={{ opacity: 0 }}
@@ -32,10 +32,7 @@ export default function MainMenu({ startNewGame, isCreatingGame, isAuthenticated
             <Button
                 variant="success"
                 size="lg"
-                onClick={() => {
-                    // TODO: Implement multiplayer feature in the future
-                    alert('Multiplayer feature coming soon!');
-                }}
+                onClick={onPlayWithFriend}
                 disabled={!isAuthenticated}
                 className="w-full text-xl py-4"
             >

@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ;
 
 export class ApiError extends Error {
   constructor(public status: number, message: string, public errors?: Record<string, string[]>) {
@@ -114,4 +114,4 @@ class ApiClient {
   }
 }
 
-export const apiClient = new ApiClient(API_BASE_URL);
+export const apiClient = new ApiClient(API_BASE_URL!);

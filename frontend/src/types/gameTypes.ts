@@ -59,4 +59,14 @@ export interface ValidMoves {
   walls: Wall[];
 }
 
+export interface GameDto {
+  id: string;
+  gameState: GameState;
+  settings: GameSettings;
+  status: string;
+  createdAt: string;
+  startedAt?: string;
+  finishedAt?: string;
+  isPrivate: boolean;
+}
 

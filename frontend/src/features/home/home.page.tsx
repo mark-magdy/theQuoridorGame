@@ -7,6 +7,7 @@ import Modal from '@/components/ui/Modal';
 import SettingsMenu from '@/components/ui/SettingsMenu';
 import AuthButton from '@/features/auth/components/AuthButton';
 import { BotDifficultyModal } from '@/components/game/BotDifficultyModal';
+import { MultiplayerRoomModal } from '@/features/multiPlayer/components/MultiplayerRoomModal';
 import { useHome } from "./hooks/home.hook";
 import AboutAndRules from './aboutAndRules/aboutAndRules.component';
 import LogoAndTitle from './logoAndTitle/logoAndTitle.component';
@@ -17,6 +18,7 @@ export default function Home() {
         showBotDifficulty, setShowBotDifficulty, hasSave, isCreatingGame,
          settings, startNewGame, handleBotDifficultySelect,
         continueSavedGame, handleSettingsChange } = useHome();
+    const [showMultiplayerModal, setShowMultiplayerModal] = React.useState(false);
 
 
     return (
@@ -54,6 +56,7 @@ export default function Home() {
                     continueSavedGame={continueSavedGame}
                     setShowSettings={setShowSettings}
                     setShowAbout={setShowAbout}
+                    onPlayWithFriend={() => setShowMultiplayerModal(true)}
                 />
 
                 {/* Quick Settings Display */}
@@ -98,6 +101,12 @@ export default function Home() {
                     onClose={() => setShowBotDifficulty(false)}
                 />
             )}
+
+            {/* Multiplayer Room Modal */}
+            <MultiplayerRoomModal
+                isOpen={showMultiplayerModal}
+                onClose={() => setShowMultiplayerModal(false)}
+            />
         </main>
     );
 }

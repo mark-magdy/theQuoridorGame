@@ -39,6 +39,10 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface GoogleAuthRequest {
+  googleToken: string;
+}
+
 export interface LeaderboardEntry {
   rank: number;
   userId: string;
