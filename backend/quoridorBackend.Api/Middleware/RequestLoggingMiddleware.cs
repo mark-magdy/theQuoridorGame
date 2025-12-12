@@ -5,17 +5,29 @@ using Microsoft.Extensions.Logging;
 
 namespace QuoridorBackend.Api.Middleware;
 
+/// <summary>
+/// Middleware for logging HTTP requests and responses.
+/// </summary>
 public class RequestLoggingMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<RequestLoggingMiddleware> _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RequestLoggingMiddleware"/> class.
+    /// </summary>
+    /// <param name="next">The next middleware in the pipeline.</param>
+    /// <param name="logger">Logger instance.</param>
     public RequestLoggingMiddleware(RequestDelegate next, ILogger<RequestLoggingMiddleware> logger)
     {
         _next = next;
         _logger = logger;
     }
 
+    /// <summary>
+    /// Invokes the middleware to log requests and responses.
+    /// </summary>
+    /// <param name="context">HTTP context.</param>
     public async Task InvokeAsync(HttpContext context)
     {
         var sw = Stopwatch.StartNew();
@@ -69,8 +81,17 @@ public class RequestLoggingMiddleware
         {
             request.EnableBuffering();
             var buffer = new byte[Convert.ToInt32(request.ContentLength)];
-            await request.Body.ReadAsync(buffer, 0, buffer.Length);
-            var bodyAsText = Encoding.UTF8.GetString(buffer);
+            int totalRead = 0;
+            while (totalRead < buffer.Length)
+            {
+                int bytesRead = await request.Body.ReadAsync(buffer.AsMemory(totalRead, buffer.Length - totalRead));
+                if (bytesRead == 0)
+                {
+                    break;
+                }
+                totalRead += bytesRead;
+            }
+            var bodyAsText = Encoding.UTF8.GetString(buffer, 0, totalRead);
             requestLog.AppendLine($"Body: {bodyAsText}");
             request.Body.Position = 0;
         }

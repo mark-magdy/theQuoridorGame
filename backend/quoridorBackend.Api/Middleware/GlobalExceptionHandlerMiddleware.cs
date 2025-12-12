@@ -9,12 +9,21 @@ using QuoridorBackend.Domain.DTOs.Common;
 
 namespace QuoridorBackend.Api.Middleware;
 
+/// <summary>
+/// Middleware for handling global exceptions and formatting error responses.
+/// </summary>
 public class GlobalExceptionHandlerMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
     private readonly IHostEnvironment _environment;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GlobalExceptionHandlerMiddleware"/> class.
+    /// </summary>
+    /// <param name="next">The next middleware in the pipeline.</param>
+    /// <param name="logger">Logger instance.</param>
+    /// <param name="environment">Host environment.</param>
     public GlobalExceptionHandlerMiddleware(
         RequestDelegate next,
         ILogger<GlobalExceptionHandlerMiddleware> logger,
@@ -25,6 +34,10 @@ public class GlobalExceptionHandlerMiddleware
         _environment = environment;
     }
 
+    /// <summary>
+    /// Invokes the middleware to handle exceptions.
+    /// </summary>
+    /// <param name="context">HTTP context.</param>
     public async Task InvokeAsync(HttpContext context)
     {
         try

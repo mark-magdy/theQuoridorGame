@@ -8,8 +8,8 @@ import { hasSavedGame } from '@/features/storage/utils/storageUtils';
 import { saveSettings, loadSettings } from '@/features/storage/utils/storageUtils';
 import { hasCurrentGame, getCurrentGameId } from '@/features/storage/utils/gameIdStorage';
 import { useAuth } from '@/features/auth/context/AuthContext';
-
-import { BotDifficulty, gameApi } from '@/lib/gameApi';
+import  {gameApi } from '@/lib/gameApi';
+import { BotDifficulty,  } from '@/lib/utils';
 import { saveCurrentGameId } from '@/features/storage/utils/gameIdStorage';
 
 

@@ -6,12 +6,20 @@ using System.Security.Claims;
 
 namespace QuoridorBackend.Api.Hubs
 {
+    /// <summary>
+    /// SignalR hub for managing game rooms, player connections, and real-time game actions.
+    /// </summary>
     [Authorize]
     public class GameHub : Hub
     {
         private readonly IGameRoomService _gameRoomService;
         private readonly ILogger<GameHub> _logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameHub"/> class.
+        /// </summary>
+        /// <param name="gameRoomService">Service for managing game rooms.</param>
+        /// <param name="logger">Logger instance.</param>
         public GameHub(IGameRoomService gameRoomService, ILogger<GameHub> logger)
         {
             _gameRoomService = gameRoomService;
@@ -24,6 +32,9 @@ namespace QuoridorBackend.Api.Hubs
                    ?? throw new HubException("User not authenticated");
         }
 
+        /// <summary>
+        /// Called when a client connects to the hub.
+        /// </summary>
         public override async Task OnConnectedAsync()
         {
             var userId = GetUserId();
@@ -33,6 +44,10 @@ namespace QuoridorBackend.Api.Hubs
             await base.OnConnectedAsync();
         }
 
+        /// <summary>
+        /// Called when a client disconnects from the hub.
+        /// </summary>
+        /// <param name="exception">The exception that occurred during disconnect, if any.</param>
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             var userId = GetUserId();
@@ -44,6 +59,11 @@ namespace QuoridorBackend.Api.Hubs
             await base.OnDisconnectedAsync(exception);
         }
 
+        /// <summary>
+        /// Creates a new game room.
+        /// </summary>
+        /// <param name="request">Room creation request data.</param>
+        /// <returns>The created room details.</returns>
         public async Task<RoomDto> CreateRoom(CreateRoomDto request)
         {
             try
@@ -63,6 +83,11 @@ namespace QuoridorBackend.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Joins an existing game room.
+        /// </summary>
+        /// <param name="request">Join room request data.</param>
+        /// <returns>The joined room details.</returns>
         public async Task<RoomDto> JoinRoom(JoinRoomDto request)
         {
             try
@@ -91,6 +116,10 @@ namespace QuoridorBackend.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Leaves the specified game room.
+        /// </summary>
+        /// <param name="roomId">The ID of the room to leave.</param>
         public async Task LeaveRoom(string roomId)
         {
             try
@@ -119,6 +148,10 @@ namespace QuoridorBackend.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Starts the game in the specified room.
+        /// </summary>
+        /// <param name="roomId">The ID of the room to start the game in.</param>
         public async Task StartGame(string roomId)
         {
             try
@@ -138,6 +171,10 @@ namespace QuoridorBackend.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Makes a move in the game.
+        /// </summary>
+        /// <param name="moveDto">Move data transfer object.</param>
         public async Task MakeMove(GameMoveDto moveDto)
         {
             Console.WriteLine($"User {GetUserId()} is making a move in room {moveDto.RoomId}");
@@ -164,6 +201,11 @@ namespace QuoridorBackend.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Rejoins a previously joined room after reconnecting.
+        /// </summary>
+        /// <param name="roomId">The ID of the room to rejoin.</param>
+        /// <returns>The room details if rejoin is successful; otherwise, null.</returns>
         public async Task<RoomDto?> RejoinRoom(string roomId)
         {
             try
@@ -199,6 +241,11 @@ namespace QuoridorBackend.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Sends a chat message to all users in the specified room.
+        /// </summary>
+        /// <param name="roomId">The ID of the room.</param>
+        /// <param name="message">The chat message.</param>
         public async Task SendChatMessage(string roomId, string message)
         {
             try
