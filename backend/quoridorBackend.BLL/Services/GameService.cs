@@ -14,13 +14,15 @@ public class GameService : IGameService
     private readonly IGameRepository _gameRepository;
     private readonly IGameValidationService _validationService;
     private readonly ICacheService _cacheService;
+    private readonly IUserService _userService;
 
-    public GameService(IUnitOfWork unitOfWork, IGameRepository gameRepository, IGameValidationService validationService, ICacheService cacheService)
+    public GameService(IUnitOfWork unitOfWork, IGameRepository gameRepository, IGameValidationService validationService, ICacheService cacheService, IUserService userService)
     {
         _unitOfWork = unitOfWork;
         _gameRepository = gameRepository;
         _validationService = validationService;
         _cacheService = cacheService;
+        _userService = userService;
     }
 
     public async Task<CreateGameResponse> CreateBotGameAsync(Guid userId, CreateBotGameRequest request)
@@ -185,6 +187,34 @@ public class GameService : IGameService
             game.FinishedAt = DateTime.UtcNow;
             gameEnded = true;
             winnerId = gameState.Winner;
+
+            // Update user stats for all human players
+            foreach (var player in gameState.Players.Where(p => p.Type == PlayerType.Human && !string.IsNullOrEmpty(p.UserId)))
+            {
+                if (Guid.TryParse(player.UserId, out var playerUserId))
+                {
+                    // Count moves and walls placed by this player
+                    var playerMoves = gameState.MoveHistory
+                        .Where(m => m.PlayerId == player.Id && m.Type == MoveType.Pawn)
+                        .Count();
+                    
+                    var playerWallsPlaced = gameState.MoveHistory
+                        .Where(m => m.PlayerId == player.Id && m.Type == MoveType.Wall)
+                        .Count();
+
+                    bool playerWon = winnerId.HasValue && winnerId.Value == player.Id;
+                    
+                    try
+                    {
+                        await _userService.UpdateUserStatsAfterGameAsync(playerUserId, playerWon, playerMoves, playerWallsPlaced);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log error but don't fail the game completion
+                        Console.WriteLine($"Failed to update stats for user {playerUserId}: {ex.Message}");
+                    }
+                }
+            }
         }
 
         await _unitOfWork.SaveChangesAsync();
@@ -225,9 +255,44 @@ public class GameService : IGameService
 
     public async Task<bool> DeleteGameAsync(Guid gameId, Guid userId)
     {
-        var game = await _gameRepository.GetByIdAsync(gameId);
+        var game = await _gameRepository.GetWithPlayersAsync(gameId);
         if (game == null || game.CreatedBy != userId)
             return false;
+
+        // If game was finished, revert stats for all human players
+        if (game.Status == "finished")
+        {
+            var gameState = JsonSerializer.Deserialize<GameState>(game.GameStateJson);
+            if (gameState != null)
+            {
+                foreach (var player in gameState.Players.Where(p => p.Type == PlayerType.Human && !string.IsNullOrEmpty(p.UserId)))
+                {
+                    if (Guid.TryParse(player.UserId, out var playerUserId))
+                    {
+                        // Count moves and walls placed by this player
+                        var playerMoves = gameState.MoveHistory
+                            .Where(m => m.PlayerId == player.Id && m.Type == MoveType.Pawn)
+                            .Count();
+                        
+                        var playerWallsPlaced = gameState.MoveHistory
+                            .Where(m => m.PlayerId == player.Id && m.Type == MoveType.Wall)
+                            .Count();
+
+                        bool playerWon = gameState.Winner.HasValue && gameState.Winner.Value == player.Id;
+                        
+                        try
+                        {
+                            await _userService.RevertUserStatsAfterGameDeletionAsync(playerUserId, playerWon, playerMoves, playerWallsPlaced);
+                        }
+                        catch (Exception ex)
+                        {
+                            // Log error but continue with deletion
+                            Console.WriteLine($"Failed to revert stats for user {playerUserId}: {ex.Message}");
+                        }
+                    }
+                }
+            }
+        }
 
         await _gameRepository.DeleteAsync(game);
         await _unitOfWork.SaveChangesAsync();
@@ -237,6 +302,15 @@ public class GameService : IGameService
         
         // Invalidate user's game list cache
         await _cacheService.RemoveAsync($"user_games:{userId}");
+
+        // Invalidate game list caches for all players
+        var allPlayerIds = game.GamePlayers.Select(p => p.UserId).ToList();
+        if (game.CreatedBy != Guid.Empty && !allPlayerIds.Contains(game.CreatedBy))
+        {
+            allPlayerIds.Add(game.CreatedBy);
+        }
+        var playerCacheKeys = allPlayerIds.Select(id => $"user_games:{id}").ToArray();
+        await _cacheService.RemoveAsync(playerCacheKeys);
 
         return true;
     }

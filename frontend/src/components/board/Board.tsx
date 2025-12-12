@@ -24,12 +24,9 @@ const Board: React.FC<BoardProps> = ({
 }) => {
   const [isPlacingWall, setIsPlacingWall] = useState(false);
   const [placementError, setPlacementError] = useState<string>('');
-
   const boardSize = gameState.boardSize;
   const totalSize = boardSize * cellSize;
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
-  const me = localStorage.getItem('userId');
-  const isCurrentPlayer = currentPlayer.userId === me;
   // If game is not loaded yet, show loading state
   if (!currentPlayer) {
     return (
@@ -39,7 +36,11 @@ const Board: React.FC<BoardProps> = ({
       </div>
     );
   }
-
+  
+  const me = localStorage.getItem('userId');
+  const isCurrentPlayer = currentPlayer.userId === me;
+  console.log("Current player:", currentPlayer, "Is current player:", isCurrentPlayer);
+  console.log("Me:", me);
   const {
     cells,
     hoveredWallPosition,

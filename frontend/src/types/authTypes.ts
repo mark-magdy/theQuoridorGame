@@ -10,16 +10,12 @@ export interface UserProfile extends User {
 }
 
 export interface UserStats {
-  userId: string;
-  totalGames: number;
-  wins: number;
-  losses: number;
-  draws: number;
+  fastestWin: number;
+  gamesPlayed:number; 
+  gamesWon: number;
   winRate: number;
-  currentStreak: number;
-  bestStreak: number;
-  averageTurns: number;
-  fastestWin: number | null;
+  totalMoves:number; 
+  wallPlaced:number; 
 }
 
 export interface AuthResponse {

@@ -97,4 +97,80 @@ public class UserService : IUserService
             Limit = limit
         };
     }
+
+    public async Task UpdateUserStatsAfterGameAsync(Guid userId, bool won, int moves, int wallsPlaced)
+    {
+        var user = await _unitOfWork.Users.GetWithStatsAsync(userId);
+        
+        if (user == null)
+        {
+            throw new KeyNotFoundException($"User {userId} not found");
+        }
+
+        // Initialize stats if they don't exist
+        if (user.Stats == null)
+        {
+            user.Stats = new Domain.Entities.UserStats
+            {
+                UserId = userId,
+                GamesPlayed = 0,
+                GamesWon = 0,
+                TotalMoves = 0,
+                WallsPlaced = 0,
+                FastestWin = null,
+                UpdatedAt = DateTime.UtcNow
+            };
+            _unitOfWork.Context.UserStats.Add(user.Stats);
+        }
+
+        // Update stats
+        user.Stats.GamesPlayed++;
+        if (won)
+        {
+            user.Stats.GamesWon++;
+            
+            // Update fastest win if this is a new record
+            if (user.Stats.FastestWin == null || moves < user.Stats.FastestWin)
+            {
+                user.Stats.FastestWin = moves;
+            }
+        }
+        
+        user.Stats.TotalMoves += moves;
+        user.Stats.WallsPlaced += wallsPlaced;
+        user.Stats.UpdatedAt = DateTime.UtcNow;
+
+        await _unitOfWork.SaveChangesAsync();
+    }
+
+    public async Task RevertUserStatsAfterGameDeletionAsync(Guid userId, bool won, int moves, int wallsPlaced)
+    {
+        var user = await _unitOfWork.Users.GetWithStatsAsync(userId);
+        
+        if (user == null || user.Stats == null)
+        {
+            // User or stats don't exist, nothing to revert
+            return;
+        }
+
+        // Revert stats
+        user.Stats.GamesPlayed = Math.Max(0, user.Stats.GamesPlayed - 1);
+        if (won)
+        {
+            user.Stats.GamesWon = Math.Max(0, user.Stats.GamesWon - 1);
+            
+            // If this was the fastest win, we can't easily recalculate, so set to null
+            // A proper implementation would need to query all remaining games
+            if (user.Stats.FastestWin == moves)
+            {
+                user.Stats.FastestWin = null;
+            }
+        }
+        
+        user.Stats.TotalMoves = Math.Max(0, user.Stats.TotalMoves - moves);
+        user.Stats.WallsPlaced = Math.Max(0, user.Stats.WallsPlaced - wallsPlaced);
+        user.Stats.UpdatedAt = DateTime.UtcNow;
+
+        await _unitOfWork.SaveChangesAsync();
+    }
 }

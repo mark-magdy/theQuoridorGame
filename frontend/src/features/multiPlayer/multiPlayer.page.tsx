@@ -118,25 +118,52 @@ export default function MultiPlayerGamePage() {
             {/* Game Info */}
             <div className="mb-4 flex justify-between items-center">
               <div className="text-white">
-                <span className="font-bold">Current Turn: </span>
-                <span className="text-lg">
-                  {gameState.players[gameState.currentPlayerIndex]?.name || `Player ${gameState.currentPlayerIndex + 1}`}
-                </span>
+                {gameState.gameStatus === 'Finished' && gameState.winner !== null ? (
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold">
+                      {gameState.players.find(p => p.id === gameState.winner) && (
+                        <span className="text-green-400">
+                          🏆 {gameState.players.find(p => p.id === gameState.winner)?.name || `Player ${gameState.winner + 1}`} Wins!
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-sm text-white/70">
+                      {currentUserPlayer && currentUserPlayer.id === gameState.winner ? (
+                        <span className="text-green-300">Congratulations! You won! 🎉</span>
+                      ) : currentUserPlayer ? (
+                        <span className="text-red-300">You lost. Better luck next time! 💪</span>
+                      ) : (
+                        <span>Game Over</span>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <span className="font-bold">Current Turn: </span>
+                    <span className="text-lg">
+                      {gameState.players[gameState.currentPlayerIndex]?.name || `Player ${gameState.currentPlayerIndex + 1}`}
+                    </span>
+                  </>
+                )}
               </div>
-              {isSpectator && (
-                <div className="bg-yellow-500/20 text-yellow-300 px-4 py-2 rounded">
-                  👁️ Spectator Mode
-                </div>
-              )}
-              {!isCurrentPlayerTurn && !isSpectator && (
-                <div className="bg-blue-500/20 text-blue-300 px-4 py-2 rounded">
-                  Waiting for opponent...
-                </div>
-              )}
-              {isCurrentPlayerTurn && (
-                <div className="bg-green-500/20 text-green-300 px-4 py-2 rounded animate-pulse">
-                  Your Turn!
-                </div>
+              {gameState.gameStatus !== 'Finished' && (
+                <>
+                  {isSpectator && (
+                    <div className="bg-yellow-500/20 text-yellow-300 px-4 py-2 rounded">
+                      👁️ Spectator Mode
+                    </div>
+                  )}
+                  {!isCurrentPlayerTurn && !isSpectator && (
+                    <div className="bg-blue-500/20 text-blue-300 px-4 py-2 rounded">
+                      Waiting for opponent...
+                    </div>
+                  )}
+                  {isCurrentPlayerTurn && (
+                    <div className="bg-green-500/20 text-green-300 px-4 py-2 rounded animate-pulse">
+                      Your Turn!
+                    </div>
+                  )}
+                </>
               )}
             </div>
             <Board

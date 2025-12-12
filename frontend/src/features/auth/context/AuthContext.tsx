@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 import { apiClient } from '@/lib/apiClient';
 import { authApi } from '@/features/auth/api/authApi';
 import {
@@ -29,6 +30,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     // Check if user is already logged in
@@ -44,6 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             createdAt: userProfile.createdAt,
           });
           localStorage.setItem('userId', userProfile.id);
+          console.log("User profile loaded:", userProfile);
           setProfile(userProfile);
         } catch (error) {
           // Token is invalid, clear it
@@ -60,10 +63,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const response: AuthResponse = await authApi.login(data);
     apiClient.setToken(response.token);
     setUser(response.user);
-    
     // Fetch full profile
     const userProfile = await authApi.getMyProfile();
     setProfile(userProfile);
+    router.refresh();
   };
 
   const register = async (data: RegisterRequest) => {

@@ -12,7 +12,7 @@ export default function UserProfileCard() {
   }
 
   const stats = profile.stats;
-
+  console.log(" profile info: " , profile)
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 space-y-4">
       <div className="flex items-center space-x-4">
@@ -40,7 +40,7 @@ export default function UserProfileCard() {
               <span className="text-xs font-medium">Wins</span>
             </div>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.wins}
+              {stats.gamesWon}
             </p>
           </div>
 
@@ -50,27 +50,27 @@ export default function UserProfileCard() {
               <span className="text-xs font-medium">Win Rate</span>
             </div>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {(stats.winRate * 100).toFixed(0)}%
+              {(stats.winRate).toFixed(2)}%
             </p>
           </div>
 
           <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg">
             <div className="flex items-center text-purple-600 dark:text-purple-400 mb-1">
               <Icon name="fire" size={16} className="mr-1" />
-              <span className="text-xs font-medium">Streak</span>
+              <span className="text-xs font-medium">Fastest Win in</span>
             </div>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.currentStreak}
+              {stats.fastestWin} {stats.fastestWin>1 ? 'Moves' : 'Move'}
             </p>
           </div>
 
           <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
             <div className="flex items-center text-orange-600 dark:text-orange-400 mb-1">
               <Icon name="gamepad" size={16} className="mr-1" />
-              <span className="text-xs font-medium">Games</span>
+              <span className="text-xs font-medium">Games Played</span>
             </div>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">
-              {stats.totalGames}
+              {stats.gamesPlayed}
             </p>
           </div>
         </div>
