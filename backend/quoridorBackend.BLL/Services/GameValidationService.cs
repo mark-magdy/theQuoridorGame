@@ -190,34 +190,45 @@ public List<Wall> GetValidWallPlacements(GameState gameState, int playerId)
     return validWalls;
 }
 
-// BFS to find a path to the goal to validate the placement of the wall
+// A* to find a path to the goal to validate the placement of the wallpublic bool HasPathToGoal(GameState gameState, int playerId)
 public bool HasPathToGoal(GameState gameState, int playerId)
 {
+    // Find the player by ID
     var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
     if (player == null)
         return false;
 
+    var openSet = new PriorityQueue<Position, int>();
+    var gScore = new Dictionary<Position, int>();
     var visited = new HashSet<Position>();
-    var queue = new Queue<Position>();
 
-    queue.Enqueue(player.Position);
-    visited.Add(player.Position);
+    Position start = player.Position;
 
-    while (queue.Count > 0)
+    gScore[start] = 0;
+    openSet.Enqueue(start, Heuristic(player, start));
+
+    while (openSet.Count > 0)
     {
-        var current = queue.Dequeue();
+        var current = openSet.Dequeue();
 
-        // Goal check
-        if (IsGoalReached(gameState, player, current))
+        if (IsGoalReached(gameState,player, current))
             return true;
 
-        foreach (var next in GetNeighbors(gameState, current))
-        {
-            if (visited.Contains(next))
-                continue;
+        if (visited.Contains(current))
+            continue;
 
-            visited.Add(next);
-            queue.Enqueue(next);
+        visited.Add(current);
+
+        foreach (var neighbor in GetNeighbors(gameState, current))
+        {
+            int Gn = gScore[current] + 1;
+
+            if (!gScore.ContainsKey(neighbor) || Gn < gScore[neighbor])
+            {
+                gScore[neighbor] = Gn;
+                int fScore = Gn + Heuristic(player, neighbor);
+                openSet.Enqueue(neighbor, fScore);
+            }
         }
     }
 
@@ -242,15 +253,25 @@ public bool HasPathToGoal(GameState gameState, int playerId)
 
     
 // first helper function
-    private bool IsWallWithinBounds(int boardSize, Wall wall)
-    {
-        int max = boardSize - 2;
+  private bool IsWallWithinBounds(int boardSize, Wall wall)
+{
+    // Limits the coordinate to (Size - 2)
+    int maxLength = boardSize - 2; 
 
-        return wall.Position.Row >= 0 &&
-            wall.Position.Row <= max &&
-            wall.Position.Col >= 0 &&
-            wall.Position.Col <= max;
-    }    
+    // Limits the coordinate to (Size - 1)
+    int maxGap = boardSize - 1; 
+
+    if (wall.IsHorizontal) // Horizontal
+    {
+        return wall.Position.Col >= 0 && wall.Position.Col <= maxLength &&
+               wall.Position.Row >= 0 && wall.Position.Row <= maxGap;
+    }
+    else // Vertical
+    {
+        return wall.Position.Row >= 0 && wall.Position.Row <= maxLength &&
+               wall.Position.Col >= 0 && wall.Position.Col <= maxGap;
+    }
+}   
     
 // second helper function
     private bool DoesWallOverlap(List<Wall> existingWalls, Wall newWall)
@@ -401,6 +422,12 @@ public bool HasPathToGoal(GameState gameState, int playerId)
             }
         }
     }
+    
+    private int Heuristic(Player player, Position pos)
+    {
+    return Math.Abs(pos.Row - player.GoalRow);
+    }
+
 
     #endregion
 }
