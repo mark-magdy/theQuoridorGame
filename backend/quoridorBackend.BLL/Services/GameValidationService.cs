@@ -12,7 +12,12 @@ public class GameValidationService : IGameValidationService
     int boardSize = gameState.BoardSize;
     var opponent = gameState.Players.First(p => p.Id != playerId);
     Position opponentPos = opponent.Position;
+     int size = gameState.BoardSize;
 
+    //Board bounds check (MUST be first)
+    if (to.Row < 0 || to.Row >= size ||
+        to.Col < 0 || to.Col >= size)
+        return false;
     //Cannot move onto another pawn
         if (opponentPos.Row == to.Row &&
             opponentPos.Col == to.Col)
