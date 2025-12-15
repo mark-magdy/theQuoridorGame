@@ -110,8 +110,7 @@ public bool IsValidWallPlacement(GameState gameState, Wall wall)
     // Path existence check (BFS)
     gameState.Walls.Add(wall);
 
-    bool allPlayersHavePath = gameState.Players
-        .All(p => HasPathToGoal(gameState, p));
+    bool allPlayersHavePath = gameState.Players.All(p => HasPathToGoal(gameState, p.Id));
 
     gameState.Walls.RemoveAt(gameState.Walls.Count - 1);
 
