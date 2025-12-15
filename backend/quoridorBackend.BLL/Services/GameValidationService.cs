@@ -12,7 +12,12 @@ public class GameValidationService : IGameValidationService
     int boardSize = gameState.BoardSize;
     var opponent = gameState.Players.First(p => p.Id != playerId);
     Position opponentPos = opponent.Position;
+     int size = gameState.BoardSize;
 
+    //Board bounds check (MUST be first)
+    if (to.Row < 0 || to.Row >= size ||
+        to.Col < 0 || to.Col >= size)
+        return false;
     //Cannot move onto another pawn
         if (opponentPos.Row == to.Row &&
             opponentPos.Col == to.Col)
@@ -66,8 +71,8 @@ public class GameValidationService : IGameValidationService
         // Jump forward is blocked
         Position jump = new Position
         {
-            Row = opponent.Row + (opponent.Row - from.Row),
-            Col = opponent.Col + (opponent.Col - from.Col)
+            Row = opponentPos.Row + (opponentPos.Row - from.Row),
+            Col = opponentPos.Col + (opponentPos.Col - from.Col)
         };
 
         if (IsWallBlocking(gameState, opponentPos, jump))
@@ -120,30 +125,32 @@ public bool IsValidWallPlacement(GameState gameState, Wall wall)
         if (player == null)
             return new List<Position>();
 
-        var validMoves = new List<Position>();
         var from = player.Position;
+        var validMoves = new List<Position>();
 
-        int[] deltas = { -2, -1, 1, 2 };
-
-        foreach (int dr in deltas)
+        var deltas = new (int dr, int dc)[]
         {
-            foreach (int dc in deltas)
+            // Normal moves
+            (-1, 0), (1, 0), (0, -1), (0, 1),
+
+            // Jump moves
+            (-2, 0), (2, 0), (0, -2), (0, 2),
+
+            // Diagonal moves
+            (-1, -1), (-1, 1), (1, -1), (1, 1)
+        };
+
+        foreach (var (dr, dc) in deltas)
+        {
+            var to = new Position
             {
-                // Only allow orthogonal or diagonal candidates
-                if (Math.Abs(dr) + Math.Abs(dc) > 2)
-                    continue;
+                Row = from.Row + dr,
+                Col = from.Col + dc
+            };
 
-                Position to = new Position
-                {
-                    Row = from.Row + dr,
-                    Col = from.Col + dc
-                };
-
-                if (IsValidPawnMove(gameState, playerId, to))
-                    validMoves.Add(to);
-            }
+            if (IsValidPawnMove(gameState, playerId, to))
+                validMoves.Add(to);
         }
-
         return validMoves;
     }
 public List<Wall> GetValidWallPlacements(GameState gameState, int playerId)
