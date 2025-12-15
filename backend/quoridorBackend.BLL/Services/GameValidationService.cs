@@ -190,7 +190,7 @@ public List<Wall> GetValidWallPlacements(GameState gameState, int playerId)
     return validWalls;
 }
 
-// A* to find a path to the goal to validate the placement of the wallpublic bool HasPathToGoal(GameState gameState, int playerId)
+// A* to find a path to the goal to validate the placement of the wall
 public bool HasPathToGoal(GameState gameState, int playerId)
 {
     // Find the player by ID
