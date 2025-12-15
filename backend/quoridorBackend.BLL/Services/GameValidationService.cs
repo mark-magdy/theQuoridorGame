@@ -7,9 +7,81 @@ public class GameValidationService : IGameValidationService
 {
     public bool IsValidPawnMove(GameState gameState, int playerId, Position to) // john 
     {
-        var validMoves = GetValidPawnMoves(gameState, playerId);
-        return validMoves.Any(p => p.Equals(to));
+    var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
+    Position from = player.Position;
+    int boardSize = gameState.BoardSize;
+    var opponent = gameState.Players.First(p => p.Id != playerId);
+    Position opponentPos = opponent.Position;
+
+    //Cannot move onto another pawn
+        if (opponentPos.Row == to.Row &&
+            opponentPos.Col == to.Col)
+        {
+            return false;
+        }
+
+    int dr = to.Row - from.Row;
+    int dc = to.Col - from.Col;
+    int manhattan = Math.Abs(dr) + Math.Abs(dc);
+
+    //Normal move (1 square)
+    if (manhattan == 1)
+    {
+        if (IsWallBlocking(gameState, from, to))
+            return false;
+        return true;
     }
+
+    //Jump over opponent
+    if (manhattan == 2 && (dr == 0 || dc == 0))
+    {
+        Position middle = new Position
+        {
+            Row = from.Row + dr / 2,
+            Col = from.Col + dc / 2
+        };
+
+        if (opponentPos.Row != middle.Row ||
+            opponentPos.Col != middle.Col) //the opponent is not in the middle
+            return false;
+
+        // Check wall between from → opponent
+        if (IsWallBlocking(gameState, from, middle))
+            return false;
+
+        // Check wall between opponent → to
+        if (IsWallBlocking(gameState,middle, to))
+            return false;
+
+        return true;
+    }
+
+    // Diagonal side-step (when jump is blocked)
+    if (Math.Abs(dr) == 1 && Math.Abs(dc) == 1) //we must ensure straight jum is blocked
+    {
+        // Must be adjacent to opponent
+        if (Math.Abs(opponentPos.Row - from.Row) + Math.Abs(opponentPos.Col - from.Col) != 1)
+            return false;
+
+        // Jump forward is blocked
+        Position jump = new Position
+        {
+            Row = opponent.Row + (opponent.Row - from.Row),
+            Col = opponent.Col + (opponent.Col - from.Col)
+        };
+
+        if (IsWallBlocking(gameState, opponentPos, jump))
+        {
+            // Side move must not be blocked
+            if (IsWallBlocking(gameState,from, to))
+                return false;
+
+            return true;
+        }
+    }
+
+    return false;
+}
 
     public bool IsValidWallPlacement(GameState gameState, Wall wall) // zak 
     {
@@ -42,53 +114,26 @@ public class GameValidationService : IGameValidationService
             return new List<Position>();
 
         var validMoves = new List<Position>();
-        var currentPos = player.Position;
+        var from = player.Position;
 
-        // Define possible move directions (up, down, left, right)
-        var directions = new[]
+        int[] deltas = { -2, -1, 1, 2 };
+
+        foreach (int dr in deltas)
         {
-            new { Row = -1, Col = 0 },  // Up
-            new { Row = 1, Col = 0 },   // Down
-            new { Row = 0, Col = -1 },  // Left
-            new { Row = 0, Col = 1 }    // Right
-        };
-
-        foreach (var dir in directions)
-        {
-            var newPos = new Position { Row = currentPos.Row + dir.Row, Col = currentPos.Col + dir.Col };
-
-            // Check if within bounds
-            if (newPos.Row < 0 || newPos.Row >= gameState.BoardSize ||
-                newPos.Col < 0 || newPos.Col >= gameState.BoardSize)
-                continue;
-
-            // Check if wall blocks this move
-            if (IsWallBlocking(gameState, currentPos, newPos))
-                continue;
-
-            // Check if another player occupies this position
-            var occupyingPlayer = gameState.Players.FirstOrDefault(p => p.Position.Equals(newPos));
-            if (occupyingPlayer != null)
+            foreach (int dc in deltas)
             {
-                // Can jump over the player if no wall behind and no player behind
-                var jumpPos = new Position { Row = newPos.Row + dir.Row, Col = newPos.Col + dir.Col };
-                
-                if (jumpPos.Row >= 0 && jumpPos.Row < gameState.BoardSize &&
-                    jumpPos.Col >= 0 && jumpPos.Col < gameState.BoardSize &&
-                    !IsWallBlocking(gameState, newPos, jumpPos) &&
-                    !gameState.Players.Any(p => p.Position.Equals(jumpPos)))
+                // Only allow orthogonal or diagonal candidates
+                if (Math.Abs(dr) + Math.Abs(dc) > 2)
+                    continue;
+
+                Position to = new Position
                 {
-                    validMoves.Add(jumpPos);
-                }
-                else
-                {
-                    // Diagonal jumps if straight jump is blocked
-                    AddDiagonalJumps(gameState, currentPos, newPos, validMoves);
-                }
-            }
-            else
-            {
-                validMoves.Add(newPos);
+                    Row = from.Row + dr,
+                    Col = from.Col + dc
+                };
+
+                if (IsValidPawnMove(gameState, playerId, to))
+                    validMoves.Add(to);
             }
         }
 
