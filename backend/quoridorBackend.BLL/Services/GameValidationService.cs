@@ -245,7 +245,7 @@ public bool HasPathToGoal(GameState gameState, int playerId)
     private bool IsWallWithinBounds(int boardSize, Wall wall)
     {
         int max = boardSize - 2;
-
+        
         return wall.Position.Row >= 0 &&
             wall.Position.Row <= max &&
             wall.Position.Col >= 0 &&
@@ -293,7 +293,7 @@ public bool HasPathToGoal(GameState gameState, int playerId)
     // Ensure w1 is horizontal, w2 vertical
     if (!w1.IsHorizontal)
         (w1, w2) = (w2, w1);
-    return w1.Position.Row == w2.Position.Row && w1.Position.Col + 1 == w2.Position.Col;
+    return w1.Position.Row == w2.Position.Row +1 && w1.Position.Col + 1 == w2.Position.Col;
     }
 
 
@@ -347,25 +347,56 @@ public bool HasPathToGoal(GameState gameState, int playerId)
 
     foreach (var wall in gameState.Walls)
     {
-        // Moving vertically (check horizontal walls)
-        if (dCol == 0 && wall.IsHorizontal)
-        {
-            int wallRow = Math.Min(from.Row, to.Row);
+        // // Moving vertically (check horizontal walls)
+        // if (dCol == 0 && wall.IsHorizontal)
+        // {
+        //     int wallRow = Math.Min(from.Row, to.Row);
 
-            if (wall.Position.Row == wallRow &&
-                (wall.Position.Col == from.Col ||
-                 wall.Position.Col == from.Col - 1))
+        //     if (wall.Position.Row+1 == wallRow &&
+        //         (wall.Position.Col == from.Col ||
+        //          wall.Position.Col+1 == from.Col ))
+        //         return true;
+        // }
+
+        // // Moving horizontally (check vertical walls)
+        // if (dRow == 0 && !wall.IsHorizontal)
+        // {
+        //     int wallCol = Math.Min(from.Col, to.Col);
+
+        //     if (wall.Position.Col+1 == wallCol &&
+        //         (wall.Position.Row == from.Row ||
+        //          wall.Position.Row +1 == from.Row ))
+        //         return true;
+        // }
+        if (wall.IsHorizontal && dCol == 0) 
+        {
+            int wallRow = wall.Position.Row;
+            int wallCol = wall.Position.Col;
+
+            // Moving UP 
+            if (from.Row == wallRow && to.Row == wallRow - 1 &&
+                (from.Col == wallCol || from.Col == wallCol + 1))
+                return true;
+
+            // Moving DOWN 
+            if (from.Row == wallRow - 1 && to.Row == wallRow &&
+                (from.Col == wallCol || from.Col == wallCol + 1))
                 return true;
         }
 
-        // Moving horizontally (check vertical walls)
-        if (dRow == 0 && !wall.IsHorizontal)
+      if (!wall.IsHorizontal && dRow == 0) 
         {
-            int wallCol = Math.Min(from.Col, to.Col);
+            int wallRow = wall.Position.Row;
+            int wallCol = wall.Position.Col;
 
-            if (wall.Position.Col == wallCol &&
-                (wall.Position.Row == from.Row ||
-                 wall.Position.Row == from.Row - 1))
+            // Moving LEFT 
+            if (from.Col == wallCol && to.Col == wallCol - 1 &&
+                (from.Row == wallRow || from.Row == wallRow + 1))
+                return true;
+
+            // Moving RIGHT 
+            if (from.Col == wallCol - 1 && to.Col == wallCol &&
+                (from.Row == wallRow || from.Row == wallRow + 1))
                 return true;
         }
     }
