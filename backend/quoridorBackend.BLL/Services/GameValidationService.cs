@@ -66,8 +66,8 @@ public class GameValidationService : IGameValidationService
         // Jump forward is blocked
         Position jump = new Position
         {
-            Row = opponent.Row + (opponent.Row - from.Row),
-            Col = opponent.Col + (opponent.Col - from.Col)
+            Row = opponentPos.Row + (opponent.Row - from.Row),
+            Col = opponentPos.Col + (opponent.Col - from.Col)
         };
 
         if (IsWallBlocking(gameState, opponentPos, jump))
