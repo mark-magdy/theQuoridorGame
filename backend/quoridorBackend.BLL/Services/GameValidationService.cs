@@ -64,6 +64,13 @@ public class GameValidationService : IGameValidationService
     // Diagonal side-step (when jump is blocked)
     if (Math.Abs(dr) == 1 && Math.Abs(dc) == 1) //we must ensure straight jum is blocked
     {
+        Position middle = new Position
+        {
+            Row = from.Row + dr / 2,
+            Col = from.Col + dc / 2
+        };
+        if (IsWallBlocking(gameState, from, middle))
+            return false;
         // Must be adjacent to opponent
         if (Math.Abs(opponentPos.Row - from.Row) + Math.Abs(opponentPos.Col - from.Col) != 1)
             return false;
