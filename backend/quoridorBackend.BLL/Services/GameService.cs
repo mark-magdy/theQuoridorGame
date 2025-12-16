@@ -15,14 +15,16 @@ public class GameService : IGameService
     private readonly IGameValidationService _validationService;
     private readonly ICacheService _cacheService;
     private readonly IUserService _userService;
+    private readonly IBotEngine _botEngine;
 
-    public GameService(IUnitOfWork unitOfWork, IGameRepository gameRepository, IGameValidationService validationService, ICacheService cacheService, IUserService userService)
+    public GameService(IUnitOfWork unitOfWork, IGameRepository gameRepository, IGameValidationService validationService, ICacheService cacheService, IUserService userService, IBotEngine botEngine)
     {
         _unitOfWork = unitOfWork;
         _gameRepository = gameRepository;
         _validationService = validationService;
         _cacheService = cacheService;
         _userService = userService;
+        _botEngine = botEngine;
     }
 
     public async Task<CreateGameResponse> CreateBotGameAsync(Guid userId, CreateBotGameRequest request)
@@ -160,9 +162,9 @@ public class GameService : IGameService
         if (gameState.GameStatus == GameStatus.Playing)
         {
             var currentPlayer = gameState.Players[gameState.CurrentPlayerIndex];
-            if (currentPlayer.Type == PlayerType.Bot)
+            if (currentPlayer.Type == PlayerType.Bot && currentPlayer.BotDifficulty.HasValue)
             {
-                botMove = GenerateBotMove(gameState, currentPlayer);
+                botMove = _botEngine.GetBestMove(gameState, currentPlayer.Id, currentPlayer.BotDifficulty.Value);
                 if (botMove != null)
                 {
                     var botMoveResult = ValidateAndApplyMove(gameState, botMove);
@@ -670,52 +672,6 @@ public class GameService : IGameService
             return player.Position.Col == 0 || player.Position.Col == boardSize - 1;
         }
         return player.Position.Row == player.GoalRow;
-    }
-
-    private Move? GenerateBotMove(GameState gameState, Player botPlayer)
-    {
-        // Simple bot implementation - just move towards goal
-        // TODO: Implement proper bot AI based on difficulty level
-        
-        var currentPos = botPlayer.Position;
-        var possibleMoves = new List<Position>();
-
-        // Try to move towards goal
-        if (botPlayer.GoalRow != -1)
-        {
-            // Vertical goal
-            if (currentPos.Row > botPlayer.GoalRow)
-                possibleMoves.Add(new Position { Row = currentPos.Row - 1, Col = currentPos.Col });
-            else if (currentPos.Row < botPlayer.GoalRow)
-                possibleMoves.Add(new Position { Row = currentPos.Row + 1, Col = currentPos.Col });
-        }
-
-        // Add lateral moves
-        possibleMoves.Add(new Position { Row = currentPos.Row, Col = currentPos.Col + 1 });
-        possibleMoves.Add(new Position { Row = currentPos.Row, Col = currentPos.Col - 1 });
-
-        // Filter valid moves (within board bounds)
-        var validMoves = possibleMoves.Where(p => 
-            p.Row >= 0 && p.Row < gameState.BoardSize && 
-            p.Col >= 0 && p.Col < gameState.BoardSize).ToList();
-
-        if (validMoves.Any())
-        {
-            // For now, just pick the first valid move
-            // TODO: Implement smarter bot logic based on difficulty
-            var selectedMove = validMoves.First();
-            
-            return new Move
-            {
-                Type = MoveType.Pawn,
-                PlayerId = botPlayer.Id,
-                From = currentPos,
-                To = selectedMove,
-                Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-            };
-        }
-
-        return null;
     }
 
     #endregion

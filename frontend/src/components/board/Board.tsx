@@ -39,8 +39,8 @@ const Board: React.FC<BoardProps> = ({
   
   const me = localStorage.getItem('userId');
   const isCurrentPlayer = currentPlayer.userId === me;
-  console.log("Current player:", currentPlayer, "Is current player:", isCurrentPlayer);
-  console.log("Me:", me);
+  // console.log("Current player:", currentPlayer, "Is current player:", isCurrentPlayer);
+  // console.log("Me:", me);
   const {
     cells,
     hoveredWallPosition,

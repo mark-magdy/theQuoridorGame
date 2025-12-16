@@ -8,9 +8,13 @@ public class GameValidationService : IGameValidationService
     public bool IsValidPawnMove(GameState gameState, int playerId, Position to) // john 
     {
     var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
+    if (player == null) return false;
+    
     Position from = player.Position;
     int boardSize = gameState.BoardSize;
-    var opponent = gameState.Players.First(p => p.Id != playerId);
+    var opponent = gameState.Players.FirstOrDefault(p => p.Id != playerId);
+    if (opponent == null) return false;
+    
     Position opponentPos = opponent.Position;
      int size = gameState.BoardSize;
 
@@ -94,29 +98,35 @@ public class GameValidationService : IGameValidationService
     return false;
 }
 
-    public bool IsValidWallPlacement(GameState gameState, Wall wall) // zak 
-    {
-        var player = gameState.Players.FirstOrDefault(p => p.Id == gameState.CurrentPlayerIndex);
-        if (player == null || player.WallsRemaining <= 0)
-            return false;
+    
+public bool IsValidWallPlacement(GameState gameState, Wall wall)
+{
+    // Player & turn validation
+    var player = gameState.Players.FirstOrDefault(p => p.Id == gameState.CurrentPlayerIndex);
+    if (player == null)
+        return false;
 
-        // Check if wall is within bounds
-        int maxPos = gameState.BoardSize - 2; // Walls can't be placed on the edge
-        if (wall.Position.Row < 0 || wall.Position.Row > maxPos ||
-            wall.Position.Col < 0 || wall.Position.Col > maxPos)
-            return false;
+    if (player.WallsRemaining <= 0)
+        return false;
 
-        // Check if wall overlaps with existing walls
-        if (gameState.Walls.Any(w => WallsOverlap(w, wall)))
-            return false;
+    //Bounds check
+    if (!IsWallWithinBounds(gameState.BoardSize, wall))
+        return false;
 
-        // Temporarily add wall and check if all players can still reach their goals
-        gameState.Walls.Add(wall);
-        bool allPlayersHavePath = gameState.Players.All(p => HasPathToGoal(gameState, p.Id));
-        gameState.Walls.RemoveAt(gameState.Walls.Count - 1);
+    //Overlap / crossing check
+    if (DoesWallOverlap(gameState.Walls, wall))
+        return false;
 
-        return allPlayersHavePath;
-    }
+    // Path existence check (BFS)
+    gameState.Walls.Add(wall);
+
+    bool allPlayersHavePath = gameState.Players.All(p => HasPathToGoal(gameState, p.Id));
+
+    gameState.Walls.RemoveAt(gameState.Walls.Count - 1);
+
+    return allPlayersHavePath;
+}
+
 
     public List<Position> GetValidPawnMoves(GameState gameState, int playerId) // zak 
     {
@@ -152,99 +162,88 @@ public class GameValidationService : IGameValidationService
         }
         return validMoves;
     }
+public List<Wall> GetValidWallPlacements(GameState gameState, int playerId)
+{
+    var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
+    if (player == null || player.WallsRemaining <= 0)
+        return new List<Wall>();
 
-    public List<Wall> GetValidWallPlacements(GameState gameState, int playerId) // john 
+    var validWalls = new List<Wall>();
+    int maxPos = gameState.BoardSize - 2;
+
+    for (int row = 0; row <= maxPos; row++)
     {
-        var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
-        if (player == null || player.WallsRemaining <= 0)
-            return new List<Wall>();
-
-        var validWalls = new List<Wall>();
-        int maxPos = gameState.BoardSize - 2;
-
-        for (int row = 0; row <= maxPos; row++)
+        for (int col = 0; col <= maxPos; col++)
         {
-            for (int col = 0; col <= maxPos; col++)
+            // Try horizontal wall
+            var horizontalWall = new Wall
             {
-                // Try horizontal wall
-                var hWall = new Wall
-                {
-                    Position = new Position { Row = row, Col = col },
-                    IsHorizontal = true
-                };
-                if (IsValidWallPlacement(gameState, hWall))
-                    validWalls.Add(hWall);
-
-                // Try vertical wall
-                var vWall = new Wall
-                {
-                    Position = new Position { Row = row, Col = col },
-                    IsHorizontal = false
-                };
-                if (IsValidWallPlacement(gameState, vWall))
-                    validWalls.Add(vWall);
-            }
-        }
-
-        return validWalls;
-    }
-
-    public bool HasPathToGoal(GameState gameState, int playerId) // newcomer 
-    {
-        var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
-        if (player == null)
-            return false;
-
-        // BFS to find path to goal
-        var queue = new Queue<Position>();
-        var visited = new HashSet<string>();
-        
-        queue.Enqueue(player.Position);
-        visited.Add($"{player.Position.Row},{player.Position.Col}");
-
-        while (queue.Count > 0)
-        {
-            var current = queue.Dequeue();
-
-            // Check if reached goal
-            if (player.GoalRow == -1) // Horizontal goal (4-player game)
-            {
-                if (current.Col == 0 || current.Col == gameState.BoardSize - 1)
-                    return true;
-            }
-            else // Vertical goal
-            {
-                if (current.Row == player.GoalRow)
-                    return true;
-            }
-
-            // Explore neighbors
-            var directions = new[]
-            {
-                new { Row = -1, Col = 0 },
-                new { Row = 1, Col = 0 },
-                new { Row = 0, Col = -1 },
-                new { Row = 0, Col = 1 }
+                Position = new Position { Row = row, Col = col },
+                IsHorizontal = true
             };
 
-            foreach (var dir in directions)
+            if (IsValidWallPlacement(gameState, horizontalWall))
+                validWalls.Add(horizontalWall);
+
+            // Try vertical wall
+            var verticalWall = new Wall
             {
-                var next = new Position { Row = current.Row + dir.Row, Col = current.Col + dir.Col };
-                var key = $"{next.Row},{next.Col}";
+                Position = new Position { Row = row, Col = col },
+                IsHorizontal = false
+            };
 
-                if (next.Row < 0 || next.Row >= gameState.BoardSize ||
-                    next.Col < 0 || next.Col >= gameState.BoardSize ||
-                    visited.Contains(key) ||
-                    IsWallBlocking(gameState, current, next))
-                    continue;
+            if (IsValidWallPlacement(gameState, verticalWall))
+                validWalls.Add(verticalWall);
+        }
+    }
 
-                queue.Enqueue(next);
-                visited.Add(key);
+    return validWalls;
+}
+
+// A* to find a path to the goal to validate the placement of the wall
+public bool HasPathToGoal(GameState gameState, int playerId)
+{
+    // Find the player by ID
+    var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
+    if (player == null)
+        return false;
+
+    var openSet = new PriorityQueue<Position, int>();
+    var gScore = new Dictionary<Position, int>();
+    var visited = new HashSet<Position>();
+
+    Position start = player.Position;
+
+    gScore[start] = 0;
+    openSet.Enqueue(start, Heuristic(player, start));
+
+    while (openSet.Count > 0)
+    {
+        var current = openSet.Dequeue();
+
+        if (IsGoalReached(gameState,player, current))
+            return true;
+
+        if (visited.Contains(current))
+            continue;
+
+        visited.Add(current);
+
+        foreach (var neighbor in GetNeighbors(gameState, current))
+        {
+            int Gn = gScore[current] + 1;
+
+            if (!gScore.ContainsKey(neighbor) || Gn < gScore[neighbor])
+            {
+                gScore[neighbor] = Gn;
+                int fScore = Gn + Heuristic(player, neighbor);
+                openSet.Enqueue(neighbor, fScore);
             }
         }
-
-        return false;
     }
+
+    return false;
+}
 
     public bool IsGameWon(GameState gameState, int playerId) // newcomer 
     {
@@ -262,75 +261,183 @@ public class GameValidationService : IGameValidationService
 
     #region Private Helper Methods
 
-    private bool IsWallBlocking(GameState gameState, Position from, Position to) 
-    {
-        // Check if a wall blocks movement from 'from' to 'to'
-        foreach (var wall in gameState.Walls)
-        {
-            if (wall.IsHorizontal)
-            {
-                // Horizontal wall blocks vertical movement
-                if (from.Col == to.Col && from.Row != to.Row)
-                {
-                    int minRow = Math.Min(from.Row, to.Row);
-                    int maxRow = Math.Max(from.Row, to.Row);
-                    
-                    // Wall blocks if it's between the rows and at the same column
-                    if (wall.Position.Row == minRow && 
-                        (wall.Position.Col == from.Col || wall.Position.Col == from.Col - 1))
-                        return true;
-                }
-            }
-            else
-            {
-                // Vertical wall blocks horizontal movement
-                if (from.Row == to.Row && from.Col != to.Col)
-                {
-                    int minCol = Math.Min(from.Col, to.Col);
-                    int maxCol = Math.Max(from.Col, to.Col);
-                    
-                    // Wall blocks if it's between the columns and at the same row
-                    if (wall.Position.Col == minCol && 
-                        (wall.Position.Row == from.Row || wall.Position.Row == from.Row - 1))
-                        return true;
-                }
-            }
-        }
+    
+// first helper function
+  private bool IsWallWithinBounds(int boardSize, Wall wall)
+{
+    // Limits the coordinate to (Size - 2)
+    int maxLength = boardSize - 2; 
 
-        return false;
+    // Limits the coordinate to (Size - 1)
+    int maxGap = boardSize - 1; 
+
+    if (wall.IsHorizontal) // Horizontal
+    {
+        return wall.Position.Col >= 0 && wall.Position.Col <= maxLength &&
+               wall.Position.Row >= 0 && wall.Position.Row <= maxGap;
     }
-
-    private bool WallsOverlap(Wall wall1, Wall wall2)
+    else // Vertical
     {
-        // Same position and orientation
-        if (wall1.Position.Equals(wall2.Position) && wall1.IsHorizontal == wall2.IsHorizontal)
+        return wall.Position.Row >= 0 && wall.Position.Row <= maxLength &&
+               wall.Position.Col >= 0 && wall.Position.Col <= maxGap;
+    }
+}   
+    
+// second helper function
+    private bool DoesWallOverlap(List<Wall> existingWalls, Wall newWall)
+    {
+    foreach (var wall in existingWalls)
+    {
+        //overlap
+        if (wall.Equals(newWall))
             return true;
 
-        // Walls intersect at center point
-        if (wall1.IsHorizontal != wall2.IsHorizontal)
+        // Crossing
+        if (wall.IsHorizontal != newWall.IsHorizontal)
         {
-            // Horizontal wall at (r, c) spans columns c and c+1
-            // Vertical wall at (r, c) spans rows r and r+1
-            if (wall1.IsHorizontal)
-            {
-                return wall1.Position.Row == wall2.Position.Row &&
-                       (wall1.Position.Col == wall2.Position.Col || wall1.Position.Col == wall2.Position.Col + 1);
-            }
-            else
-            {
-                return wall2.Position.Row == wall1.Position.Row &&
-                       (wall2.Position.Col == wall1.Position.Col || wall2.Position.Col == wall1.Position.Col + 1);
-            }
+            if (DoWallsCross(wall, newWall))
+                return true;
         }
 
-        return false;
+        //Parallel adjacent walls
+        if (wall.IsHorizontal == newWall.IsHorizontal)
+        {
+            // Horizontal touching end-to-end
+            if (wall.IsHorizontal &&
+                wall.Position.Row == newWall.Position.Row &&
+                Math.Abs(wall.Position.Col - newWall.Position.Col) == 1)
+                return true;
+
+            // Vertical touching end-to-end
+            if (!wall.IsHorizontal &&
+                wall.Position.Col == newWall.Position.Col &&
+                Math.Abs(wall.Position.Row - newWall.Position.Row) == 1)
+                return true;
+        }
     }
 
-    private void AddDiagonalJumps(
-    GameState gameState,
-    Position from,
-    Position occupied,
-    List<Position> validMoves)
+    return false;
+}
+    // used to check the crossing called by -----> DoesWallOverlap()
+    private bool DoWallsCross(Wall w1, Wall w2)
+    {
+    // Ensure w1 is horizontal, w2 vertical
+    if (!w1.IsHorizontal)
+        (w1, w2) = (w2, w1);
+    return w1.Position.Row == w2.Position.Row +1 && w1.Position.Col + 1 == w2.Position.Col;
+    }
+
+
+// called inside the BFS
+    private bool IsGoalReached(GameState gameState, Player player, Position pos)
+    {
+    return pos.Row == player.GoalRow;
+    }
+
+//used to return the valid moves available to the pawn after placing a wall
+// used inside the pawn move and BFS while checking for a goal after wall placement
+    private IEnumerable<Position> GetNeighbors(GameState gameState, Position pos)
+    {
+    int size = gameState.BoardSize;
+
+    var directions = new[]
+         {
+        new Position { Row = -1, Col = 0 },
+        new Position { Row = 1,  Col = 0 },
+        new Position { Row = 0,  Col = -1 },
+        new Position { Row = 0,  Col = 1 }
+        };
+
+    foreach (var d in directions)
+        {
+        var next = new Position
+        {
+            Row = pos.Row + d.Row,
+            Col = pos.Col + d.Col
+        };
+
+        if (next.Row < 0 || next.Row >= size ||
+            next.Col < 0 || next.Col >= size)
+            continue;
+
+        if (IsWallBlocking(gameState, pos, next))
+            continue;
+
+        yield return next;
+     }
+    }
+   
+    private bool IsWallBlocking(GameState gameState, Position from, Position to)
+    {
+    int dRow = to.Row - from.Row;
+    int dCol = to.Col - from.Col;
+
+    // adjacent orthogonal moves are valid
+    if (Math.Abs(dRow) + Math.Abs(dCol) != 1)
+        return false;
+
+    foreach (var wall in gameState.Walls)
+    {
+        // // Moving vertically (check horizontal walls)
+        // if (dCol == 0 && wall.IsHorizontal)
+        // {
+        //     int wallRow = Math.Min(from.Row, to.Row);
+
+        //     if (wall.Position.Row+1 == wallRow &&
+        //         (wall.Position.Col == from.Col ||
+        //          wall.Position.Col+1 == from.Col ))
+        //         return true;
+        // }
+
+        // // Moving horizontally (check vertical walls)
+        // if (dRow == 0 && !wall.IsHorizontal)
+        // {
+        //     int wallCol = Math.Min(from.Col, to.Col);
+
+        //     if (wall.Position.Col+1 == wallCol &&
+        //         (wall.Position.Row == from.Row ||
+        //          wall.Position.Row +1 == from.Row ))
+        //         return true;
+        // }
+        if (wall.IsHorizontal && dCol == 0) 
+        {
+            int wallRow = wall.Position.Row;
+            int wallCol = wall.Position.Col;
+
+            // Moving UP 
+            if (from.Row == wallRow && to.Row == wallRow - 1 &&
+                (from.Col == wallCol || from.Col == wallCol + 1))
+                return true;
+
+            // Moving DOWN 
+            if (from.Row == wallRow - 1 && to.Row == wallRow &&
+                (from.Col == wallCol || from.Col == wallCol + 1))
+                return true;
+        }
+
+      if (!wall.IsHorizontal && dRow == 0) 
+        {
+            int wallRow = wall.Position.Row;
+            int wallCol = wall.Position.Col;
+
+            // Moving LEFT 
+            if (from.Col == wallCol && to.Col == wallCol - 1 &&
+                (from.Row == wallRow || from.Row == wallRow + 1))
+                return true;
+
+            // Moving RIGHT 
+            if (from.Col == wallCol - 1 && to.Col == wallCol &&
+                (from.Row == wallRow || from.Row == wallRow + 1))
+                return true;
+        }
+    }
+
+    return false;
+    }
+
+   
+
+    private void AddDiagonalJumps(GameState gameState, Position from, Position occupied, List<Position> validMoves)
     {
         int rowDir = occupied.Row - from.Row;
         int colDir = occupied.Col - from.Col;
@@ -362,6 +469,12 @@ public class GameValidationService : IGameValidationService
             validMoves.Add(diagPos);
         }
     }
+    
+    private int Heuristic(Player player, Position pos)
+    {
+    return Math.Abs(pos.Row - player.GoalRow);
+    }
+
 
     #endregion
 }
