@@ -8,9 +8,13 @@ public class GameValidationService : IGameValidationService
     public bool IsValidPawnMove(GameState gameState, int playerId, Position to) // john 
     {
     var player = gameState.Players.FirstOrDefault(p => p.Id == playerId);
+    if (player == null) return false;
+    
     Position from = player.Position;
     int boardSize = gameState.BoardSize;
-    var opponent = gameState.Players.First(p => p.Id != playerId);
+    var opponent = gameState.Players.FirstOrDefault(p => p.Id != playerId);
+    if (opponent == null) return false;
+    
     Position opponentPos = opponent.Position;
      int size = gameState.BoardSize;
 

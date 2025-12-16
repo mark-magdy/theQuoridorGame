@@ -80,7 +80,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendOnly", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
+        policy.WithOrigins( "https://quoridor-frontend.proudrock-dd67c3c3.uaenorth.azurecontainerapps.io" ,
+                           "http://localhost:3000",
+                           "https://quoridorfrontend.proudrock-dd67c3c3.uaenorth.azurecontainerapps.io",
+                           "https://www.quoridor.markmagdy.com")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
@@ -103,6 +106,7 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IGameValidationService, GameValidationService>();
+builder.Services.AddScoped<IBotEngine, BotEngine>();
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IGameRoomService, GameRoomService>();
 
