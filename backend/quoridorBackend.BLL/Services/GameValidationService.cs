@@ -64,12 +64,7 @@ public class GameValidationService : IGameValidationService
     // Diagonal side-step (when jump is blocked)
     if (Math.Abs(dr) == 1 && Math.Abs(dc) == 1) //we must ensure straight jum is blocked
     {
-        Position middle = new Position
-        {
-            Row = from.Row + dr / 2,
-            Col = from.Col + dc / 2
-        };
-        if (IsWallBlocking(gameState, from, middle))
+        if(IsWallBlocking(gameState, from, opponentPos))
             return false;
         // Must be adjacent to opponent
         if (Math.Abs(opponentPos.Row - from.Row) + Math.Abs(opponentPos.Col - from.Col) != 1)
@@ -82,7 +77,11 @@ public class GameValidationService : IGameValidationService
             Col = opponentPos.Col + (opponentPos.Col - from.Col)
         };
 
-        if (IsWallBlocking(gameState, opponentPos, jump))
+        bool jumpOutsideBoard =
+        jump.Row < 0 || jump.Row >= boardSize ||
+        jump.Col < 0 || jump.Col >= boardSize;
+
+        if (IsWallBlocking(gameState, opponentPos, jump) || jumpOutsideBoard)
         {
             // Side move must not be blocked
             if (IsWallBlocking(gameState,from, to))
@@ -327,30 +326,40 @@ public class GameValidationService : IGameValidationService
         return false;
     }
 
-    private void AddDiagonalJumps(GameState gameState, Position from, Position occupied, List<Position> validMoves)
+    private void AddDiagonalJumps(
+    GameState gameState,
+    Position from,
+    Position occupied,
+    List<Position> validMoves)
     {
-        // Calculate the direction we were moving
         int rowDir = occupied.Row - from.Row;
         int colDir = occupied.Col - from.Col;
 
-        // Try perpendicular directions
-        var perpDirs = new[]
+        var diagDirs = new[]
         {
-            new { Row = colDir, Col = rowDir },   // Perpendicular 1
-            new { Row = -colDir, Col = -rowDir }  // Perpendicular 2
+            new { Row =  colDir, Col = -rowDir },
+            new { Row = -colDir, Col =  rowDir }
         };
 
-        foreach (var dir in perpDirs)
+        foreach (var dir in diagDirs)
         {
-            var diagPos = new Position { Row = occupied.Row + dir.Row, Col = occupied.Col + dir.Col };
-            
-            if (diagPos.Row >= 0 && diagPos.Row < gameState.BoardSize &&
-                diagPos.Col >= 0 && diagPos.Col < gameState.BoardSize &&
-                !IsWallBlocking(gameState, occupied, diagPos) &&
-                !gameState.Players.Any(p => p.Position.Equals(diagPos)))
+            var diagPos = new Position
             {
-                validMoves.Add(diagPos);
-            }
+                Row = occupied.Row + dir.Row,
+                Col = occupied.Col + dir.Col
+            };
+
+            if (diagPos.Row < 0 || diagPos.Row >= gameState.BoardSize ||
+                diagPos.Col < 0 || diagPos.Col >= gameState.BoardSize)
+                continue;
+
+            if (IsWallBlocking(gameState, occupied, diagPos))
+                continue;
+
+            if (gameState.Players.Any(p => p.Position.Equals(diagPos)))
+                continue;
+
+            validMoves.Add(diagPos);
         }
     }
 
