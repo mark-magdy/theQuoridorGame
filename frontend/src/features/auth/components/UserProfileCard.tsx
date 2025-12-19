@@ -12,7 +12,7 @@ export default function UserProfileCard() {
   }
 
   const stats = profile.stats;
-  console.log(" profile info: " , profile)
+  // console.log(" profile info: " , profile)
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 space-y-4">
       <div className="flex items-center space-x-4">
@@ -34,7 +34,7 @@ export default function UserProfileCard() {
           Statistics
         </h4>
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg">
+          <div className=" dark:bg-blue-900/20 p-3 rounded-lg">
             <div className="flex items-center text-blue-600 dark:text-blue-400 mb-1">
               <Icon name="trophy" size={16} className="mr-1" />
               <span className="text-xs font-medium">Wins</span>
@@ -44,7 +44,7 @@ export default function UserProfileCard() {
             </p>
           </div>
 
-          <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
+          <div className=" dark:bg-green-900/20 p-3 rounded-lg">
             <div className="flex items-center text-green-600 dark:text-green-400 mb-1">
               <Icon name="chart" size={16} className="mr-1" />
               <span className="text-xs font-medium">Win Rate</span>
@@ -54,7 +54,7 @@ export default function UserProfileCard() {
             </p>
           </div>
 
-          <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg">
+          <div className=" dark:bg-purple-900/20 p-3 rounded-lg">
             <div className="flex items-center text-purple-600 dark:text-purple-400 mb-1">
               <Icon name="fire" size={16} className="mr-1" />
               <span className="text-xs font-medium">Fastest Win in</span>
@@ -64,7 +64,7 @@ export default function UserProfileCard() {
             </p>
           </div>
 
-          <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
+          <div className=" dark:bg-orange-900/20 p-3 rounded-lg">
             <div className="flex items-center text-orange-600 dark:text-orange-400 mb-1">
               <Icon name="gamepad" size={16} className="mr-1" />
               <span className="text-xs font-medium">Games Played</span>

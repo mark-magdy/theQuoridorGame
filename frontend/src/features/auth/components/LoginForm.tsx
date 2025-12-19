@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/context/AuthContext';
 import { ApiError } from '@/lib/apiClient';
 import Button from '@/components/common/Button';
@@ -14,6 +15,7 @@ interface LoginFormProps {
 
 export default function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormProps) {
   const { login } = useAuth();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -27,6 +29,9 @@ export default function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormPr
     try {
       await login({ email, password });
       onSuccess?.();
+
+      window.location.reload();
+
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);

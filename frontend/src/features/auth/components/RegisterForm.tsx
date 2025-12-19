@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/features/auth/context/AuthContext';
 import { ApiError } from '@/lib/apiClient';
 import Button from '@/components/common/Button';
@@ -14,6 +15,7 @@ interface RegisterFormProps {
 
 export default function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) {
   const { register } = useAuth();
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +43,9 @@ export default function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFor
     try {
       await register({ username, email, password });
       onSuccess?.();
+
+      window.location.reload();
+
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);

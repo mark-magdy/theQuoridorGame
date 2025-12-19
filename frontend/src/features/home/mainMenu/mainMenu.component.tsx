@@ -4,12 +4,11 @@ import { motion } from 'framer-motion';
 import Button from '@/components/common/Button';
 import Icon from '@/components/common/Icon';
 
-import Tooltip from '@/components/common/Tooltip';
-
 
 
 export default function MainMenu({ startNewGame, isCreatingGame, isAuthenticated, hasSave, continueSavedGame, setShowSettings, setShowAbout, onPlayWithFriend }
     : { startNewGame: () => void; isCreatingGame: boolean; isAuthenticated: boolean; hasSave: boolean; continueSavedGame: () => void; setShowSettings: React.Dispatch<React.SetStateAction<boolean>>; setShowAbout: React.Dispatch<React.SetStateAction<boolean>>; onPlayWithFriend: () => void; }) {
+
     return (<motion.div
         className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 space-y-4"
         initial={{ opacity: 0 }}
@@ -27,24 +26,16 @@ export default function MainMenu({ startNewGame, isCreatingGame, isAuthenticated
             {isCreatingGame ? 'Creating Game...' : 'Start New Game vs Bot'}
         </Button>
 
-        {/* Play with a Friend Button - Requires Authentication */}
-        <Tooltip content={!isAuthenticated ? "Sign in to play with friends" : ""}>
-            <Button
-                variant="success"
-                size="lg"
-                onClick={onPlayWithFriend}
-                disabled={!isAuthenticated}
-                className="w-full text-xl py-4"
-            >
-                <Icon name="users" size={24} className="inline mr-2" />
-                Play with a Friend
-                {!isAuthenticated && (
-                    <span className="ml-2 text-xs bg-white/20 px-2 py-1 rounded">
-                        🔒 Sign in required
-                    </span>
-                )}
-            </Button>
-        </Tooltip>
+        {/* Play with a Friend Button */}
+        <Button
+            variant="success"
+            size="lg"
+            onClick={onPlayWithFriend}
+            className="w-full text-xl py-4"
+        >
+            <Icon name="users" size={24} className="inline mr-2" />
+            Play with a Friend
+        </Button>
 
         {hasSave && (
             <Button

@@ -44,7 +44,7 @@ export function useGameState() {
       const gameDto = await gameApi.getGame(id);
       setGameId(id);
       setGameState(gameDto.gameState);
-      console.log(">>>> game", gameDto.gameState);
+      // console.log(">>>> game", gameDto.gameState);
       // Check if it's player's turn
       const currentPlayer = gameDto.gameState.players[gameDto.gameState.currentPlayerIndex];
       setIsPlayerTurn(currentPlayer.type !== 'Bot');

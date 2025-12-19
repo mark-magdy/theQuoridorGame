@@ -31,7 +31,7 @@ export default function MultiPlayerGamePage() {
       </div>
     );
   }
-  console.log("Room ", room);
+  // console.log("Room ", room);
   if (!isConnected) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -42,10 +42,16 @@ export default function MultiPlayerGamePage() {
       </div>
     );
   }
-  console.log(">> game state: ", gameState);
+  // console.log(">> game state: ", gameState);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative min-h-screen bg-gradient-to-br from-gray-400 to-gray-800 p-4 overflow-hidden">
+      <div className="absolute inset-0 bg-black/50 pointer-events-none z-0"></div>
+      <div className="bg-decoration"></div>
+      <div className="wall-decoration w-32 h-4 top-1/4 left-[20%] rotate-45 animate-subtle-float" style={{ animationDelay: '1s' }}></div>
+      <div className="wall-decoration w-4 h-24 top-1/4 left-0 rotate-45 animate-subtle-float" style={{ animationDelay: '1s' }}></div>
+      <div className="wall-decoration w-4 h-24 top-2/3 right-[25%] animate-subtle-float" style={{ animationDelay: '2s' }}></div>
+      <div className="wall-decoration w-4 h-24 top-2/3 left-[25%] rotate-45 animate-subtle-float" style={{ animationDelay: '2s' }}></div>
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 mb-4">
           <div className="flex justify-between items-center">
@@ -79,7 +85,7 @@ export default function MultiPlayerGamePage() {
             <h2 className="text-xl font-bold text-white mb-4">
               Waiting for players... ({room.currentPlayers}/{room.maxPlayers})
             </h2>
-            
+
             <div className="space-y-2 mb-6">
               {room.players.map((player) => (
                 <div
@@ -166,9 +172,47 @@ export default function MultiPlayerGamePage() {
                 </>
               )}
             </div>
+
+            {/* Players and Walls Info */}
+            <div className="mb-4 grid grid-cols-2 gap-3">
+              {gameState.players.map((player) => (
+                <div
+                  key={player.id}
+                  className={`bg-white/5 rounded-lg p-3 border-2 ${gameState.currentPlayerIndex === player.id
+                      ? 'border-green-400'
+                      : 'border-transparent'
+                    } ${currentUserPlayer?.id === player.id ? 'bg-white/10' : ''}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-4 h-4 rounded-full ${player.color === 'player1'
+                            ? 'bg-blue-500'
+                            : player.color === 'player2'
+                              ? 'bg-red-500'
+                              : player.color === 'player3'
+                                ? 'bg-green-500'
+                                : 'bg-yellow-500'
+                          }`}
+                      />
+                      <span className="text-white font-medium">
+                        {player.name}
+                        {currentUserPlayer?.id === player.id && (
+                          <span className="ml-1 text-xs text-green-400">(You)</span>
+                        )}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-white">
+                      <span className="text-lg">🧱</span>
+                      <span className="font-bold text-lg">{player.wallsRemaining}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
             <Board
               gameState={gameState}
-              onPawnMove={isCurrentPlayerTurn ? handlePawnMove : () => {}}
+              onPawnMove={isCurrentPlayerTurn ? handlePawnMove : () => { }}
               onWallPlace={isCurrentPlayerTurn ? handleWallPlace : async () => false}
             />
           </div>

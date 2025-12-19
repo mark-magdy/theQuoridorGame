@@ -1,6 +1,6 @@
 export function Instructions() {
     return (
-        <div className="mt-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
+        <div className="mt-4 mx-auto max-w-7xl bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                 How to Play
             </h3>

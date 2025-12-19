@@ -19,6 +19,8 @@ function GoogleSignInButtonInner({ onSuccess, onError, text = 'continue_with' }:
       if (credentialResponse.credential) {
         await googleAuth(credentialResponse.credential);
         onSuccess?.();
+        window.location.reload();
+
       }
     } catch (err) {
       if (err instanceof ApiError) {

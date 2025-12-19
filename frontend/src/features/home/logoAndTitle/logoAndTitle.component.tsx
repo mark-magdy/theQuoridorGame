@@ -10,9 +10,9 @@ export default function LogoAndTitle() {
                         Quoridor
                     </h1>
                     <p className="text-xl text-gray-600 dark:text-gray-400">
-                        Board Game - Team el Basbosa
+                        Board Game
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
                         Block your opponents, reach your goal!
                     </p>
                 </motion.div>);

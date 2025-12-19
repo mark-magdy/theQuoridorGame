@@ -74,5 +74,44 @@ body {
   transition: none !important;
 }
 
+/* Make animations additive to preserve other transforms */
+.animate-subtle-float {
+  animation-composition: add;
+}
 
+/* Glass panel effect */
+@layer utilities {
+  .glass-panel {
+    @apply bg-gray-900/40 backdrop-blur-md border border-gray-700/50;
+  }
+}
 
+/* Background decorations */
+.bg-decoration {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 2px, transparent 2px);
+  background-size: 40px 40px;
+  transform: perspective(1000px) rotateX(30deg) rotateY(-20deg) rotateZ(10deg);
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .bg-decoration {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+}
+
+.wall-decoration {
+  @apply absolute rounded-sm;
+  background: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+  z-index: 0;
+}

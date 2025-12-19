@@ -63,8 +63,8 @@ class ApiClient {
     const url = `${this.baseUrl}${endpoint}`;
     
     try {
-      console.log("Request to:", url);
-      console.log("Request options:", { ...options, headers });
+      // console.log("Request to:", url);
+      // console.log("Request options:", { ...options, headers });
       const response = await fetch(url, {
         ...options,
         headers,
@@ -72,7 +72,7 @@ class ApiClient {
       
       const data = await response.json().catch(() => ({}));
       //console.log("Response of req:", response);
-      console.log("Response data:", data);
+      // console.log("Response data:", data);
 
       if (!response.ok) {
         throw new ApiError(

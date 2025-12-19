@@ -16,24 +16,24 @@ export const useMultiplayerGame = () => {
   const { isConnected, error, startGame, leaveRoom, makeMove, rejoinRoom } = useGameHub({
     currentRoomId: room?.roomId,
     onGameStarted: (gameDto) => {
-      console.log("Game started:", gameDto);
+      // console.log("Game started:", gameDto);
       setGameState(transformGameState(gameDto.gameState));
       setIsGameStarted(true);
       // Save game state to sessionStorage
       sessionStorage.setItem("currentGameState", JSON.stringify(transformGameState(gameDto.gameState)));
     },
     onGameStateUpdated: (gameDto) => {
-      console.log("Game state updated:", gameDto);
+      // console.log("Game state updated:", gameDto);
       setGameState(transformGameState(gameDto.gameState));
       sessionStorage.setItem("currentGameState", JSON.stringify(transformGameState(gameDto.gameState)));
     },
     onGameEnded: (gameDto) => {
-      console.log("Game ended:", gameDto);
+      // console.log("Game ended:", gameDto);
       setGameState(transformGameState(gameDto.gameState));
       sessionStorage.setItem("currentGameState", JSON.stringify(transformGameState(gameDto.gameState)));
     },
     onRoomUpdated: (updatedRoom) => {
-      console.log("Room updated:", updatedRoom);
+      // console.log("Room updated:", updatedRoom);
       setRoom(updatedRoom);
       // Update sessionStorage with latest room state
       sessionStorage.setItem("currentRoom", JSON.stringify(updatedRoom));
@@ -49,7 +49,7 @@ export const useMultiplayerGame = () => {
       router.push("/");
     },
     onReconnected: async () => {
-      console.log("Reconnected to server, fetching latest room state");
+      // console.log("Reconnected to server, fetching latest room state");
       if (room) {
         try {
           const updatedRoom = await rejoinRoom(room.roomId);

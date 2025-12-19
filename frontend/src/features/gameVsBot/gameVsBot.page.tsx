@@ -72,10 +72,16 @@ export default function GameVsBot() {
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
   const isGameFinished = gameState.gameStatus === 'Finished';
   const winner = gameState.winner !== null ? gameState.players.find(p => p.id === gameState.winner) : null;
-  console.log("gameState " , gameState);
+  // console.log("gameState " , gameState);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div className=" relative min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-400 dark:to-gray-800 p-4  overflow-hidden">
+      <div className="absolute inset-0 bg-black/50 pointer-events-none z-0 dark:block hidden"></div>
+      <div className="wall-decoration w-32 h-4 top-1/4 left-[20%] rotate-45 animate-subtle-float" style={{ animationDelay: '1s' }}></div>
+      <div className="wall-decoration w-4 h-24 top-1/4 left-0 rotate-45 animate-subtle-float" style={{ animationDelay: '1s' }}></div>
+      <div className="wall-decoration w-4 h-24 top-2/3 right-[25%] animate-subtle-float" style={{ animationDelay: '2s' }}></div>
+      <div className="wall-decoration w-4 h-24 top-2/3 left-[25%] rotate-45 animate-subtle-float" style={{ animationDelay: '2s' }}></div>
+      <div className="max-w-7xl mx-auto relative z-10">
+      <div >
         {/* Header */}
         <div className="mb-4 flex justify-between items-center">
           <button
@@ -142,6 +148,7 @@ export default function GameVsBot() {
 
       {/* Instructions */}
       <Instructions />
+      </div>
     </div>
   );
 }

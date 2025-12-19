@@ -63,16 +63,16 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
 
     // Handle reconnection
     newConnection.onreconnected(async () => {
-      console.log("[SignalR] Reconnected successfully");
+      //console.log("[SignalR] Reconnected successfully");
       setIsConnected(true);
       
       // Rejoin room if we were in one
       if (optionsRef.current.currentRoomId) {
         try {
-          console.log(`[SignalR] Rejoining room ${optionsRef.current.currentRoomId} after reconnection`);
+          //console.log(`[SignalR] Rejoining room ${optionsRef.current.currentRoomId} after reconnection`);
           const room = await newConnection.invoke<RoomDto | null>("RejoinRoom", optionsRef.current.currentRoomId);
           if (room) {
-            console.log("[SignalR] Successfully rejoined room:", room);
+            //console.log("[SignalR] Successfully rejoined room:", room);
             optionsRef.current.onRoomUpdated?.(room);
           }
           optionsRef.current.onReconnected?.();
@@ -83,49 +83,49 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
     });
 
     newConnection.onreconnecting((error) => {
-      console.log("[SignalR] Connection lost, reconnecting...", error);
+      //console.log("[SignalR] Connection lost, reconnecting...", error);
       setIsConnected(false);
     });
 
     newConnection.onclose((error) => {
-      console.log("[SignalR] Connection closed", error);
+      //console.log("[SignalR] Connection closed", error);
       setIsConnected(false);
     });
 
     // Set up event handlers - using arrow functions to access latest optionsRef
     newConnection.on("RoomUpdated", (room: RoomDto) => {
-      console.log("[SignalR] Room updated:", room);
+      //console.log("[SignalR] Room updated:", room);
       optionsRef.current.onRoomUpdated?.(room);
     });
 
     newConnection.on("PlayerReconnected", (data: { userId: string; room: RoomDto }) => {
-      console.log("[SignalR] Player reconnected:", data);
+      //console.log("[SignalR] Player reconnected:", data);
       optionsRef.current.onPlayerReconnected?.(data);
       optionsRef.current.onRoomUpdated?.(data.room);
     });
 
     newConnection.on("RoomClosed", () => {
-      console.log("[SignalR] Room closed");
+      //console.log("[SignalR] Room closed");
       optionsRef.current.onRoomClosed?.();
     });
 
     newConnection.on("GameStarted", (gameDto: GameDto) => {
-      console.log("[SignalR] Game started:", gameDto);
+      //console.log("[SignalR] Game started:", gameDto);
       optionsRef.current.onGameStarted?.(gameDto);
     });
 
     newConnection.on("GameStateUpdated", (gameDto: GameDto) => {
-      console.log("[SignalR] Game state updated:", gameDto);
+      //console.log("[SignalR] Game state updated:", gameDto);
       optionsRef.current.onGameStateUpdated?.(gameDto);
     });
 
     newConnection.on("GameEnded", (gameDto: GameDto) => {
-      console.log("[SignalR] Game ended:", gameDto);
+      //console.log("[SignalR] Game ended:", gameDto);
       optionsRef.current.onGameEnded?.(gameDto);
     });
 
     newConnection.on("ChatMessage", (message: ChatMessage) => {
-      console.log("[SignalR] Chat message:", message);
+      //console.log("[SignalR] Chat message:", message);
       optionsRef.current.onChatMessage?.(message);
     });
 
@@ -133,17 +133,17 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
     const startConnection = async () => {
       try {
         await newConnection.start();
-        console.log("[SignalR] Connected successfully");
+        //console.log("[SignalR] Connected successfully");
         setIsConnected(true);
         setError(null);
         
         // Auto-rejoin room if specified
         if (optionsRef.current.currentRoomId) {
           try {
-            console.log(`[SignalR] Auto-rejoining room ${optionsRef.current.currentRoomId} on initial connect`);
+            //console.log(`[SignalR] Auto-rejoining room ${optionsRef.current.currentRoomId} on initial connect`);
             const room = await newConnection.invoke<RoomDto | null>("RejoinRoom", optionsRef.current.currentRoomId);
             if (room) {
-              console.log("[SignalR] Auto-rejoin successful:", room);
+              //console.log("[SignalR] Auto-rejoin successful:", room);
               optionsRef.current.onRoomUpdated?.(room);
             }
           } catch (err) {
@@ -161,7 +161,7 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
 
     // Cleanup
     return () => {
-      console.log("[SignalR] Cleaning up connection");
+      //console.log("[SignalR] Cleaning up connection");
       if (connectionRef.current) {
         connectionRef.current.stop().catch((err) => {
           console.error("[SignalR] Error stopping connection:", err);
@@ -177,9 +177,9 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log(`[SignalR] Creating room with ${maxPlayers} max players`);
+        //console.log(`[SignalR] Creating room with ${maxPlayers} max players`);
         const room = await connection.invoke<RoomDto>("CreateRoom", { maxPlayers });
-        console.log("[SignalR] Room created:", room);
+        //console.log("[SignalR] Room created:", room);
         return room;
       } catch (err) {
         console.error("[SignalR] Error creating room:", err);
@@ -196,9 +196,9 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log(`[SignalR] Joining room: ${roomId}`);
+        //console.log(`[SignalR] Joining room: ${roomId}`);
         const room = await connection.invoke<RoomDto>("JoinRoom", { roomId });
-        console.log("[SignalR] Joined room:", room);
+        //console.log("[SignalR] Joined room:", room);
         return room;
       } catch (err) {
         console.error("[SignalR] Error joining room:", err);
@@ -215,9 +215,9 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log(`[SignalR] Leaving room: ${roomId}`);
+        //console.log(`[SignalR] Leaving room: ${roomId}`);
         await connection.invoke("LeaveRoom", roomId);
-        console.log("[SignalR] Left room successfully");
+        //console.log("[SignalR] Left room successfully");
       } catch (err) {
         console.error("[SignalR] Error leaving room:", err);
         throw err;
@@ -233,9 +233,9 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log(`[SignalR] Starting game in room: ${roomId}`);
+        //console.log(`[SignalR] Starting game in room: ${roomId}`);
         await connection.invoke("StartGame", roomId);
-        console.log("[SignalR] Game start request sent");
+        //console.log("[SignalR] Game start request sent");
       } catch (err) {
         console.error("[SignalR] Error starting game:", err);
         throw err;
@@ -251,9 +251,9 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log("[SignalR] Making move:", moveDto);
+        //console.log("[SignalR] Making move:", moveDto);
         await connection.invoke("MakeMove", moveDto);
-        console.log("[SignalR] Move sent successfully");
+        //console.log("[SignalR] Move sent successfully");
       } catch (err) {
         console.error("[SignalR] Error making move:", err);
         throw err;
@@ -269,7 +269,7 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log(`[SignalR] Sending chat message to room ${roomId}:`, message);
+        //console.log(`[SignalR] Sending chat message to room ${roomId}:`, message);
         await connection.invoke("SendChatMessage", roomId, message);
       } catch (err) {
         console.error("[SignalR] Error sending chat message:", err);
@@ -286,9 +286,9 @@ export const useGameHub = (options: UseGameHubOptions = {}) => {
       }
 
       try {
-        console.log(`[SignalR] Rejoining room: ${roomId}`);
+        //console.log(`[SignalR] Rejoining room: ${roomId}`);
         const room = await connection.invoke<RoomDto | null>("RejoinRoom", roomId);
-        console.log("[SignalR] Rejoin result:", room);
+        //console.log("[SignalR] Rejoin result:", room);
         return room;
       } catch (err) {
         console.error("[SignalR] Error rejoining room:", err);

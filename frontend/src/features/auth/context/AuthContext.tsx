@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             createdAt: userProfile.createdAt,
           });
           localStorage.setItem('userId', userProfile.id);
-          console.log("User profile loaded:", userProfile);
+          // console.log("User profile loaded:", userProfile);
           setProfile(userProfile);
         } catch (error) {
           // Token is invalid, clear it

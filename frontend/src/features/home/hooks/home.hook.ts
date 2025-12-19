@@ -69,7 +69,7 @@ export function useHome() {
     setIsCreatingGame(true);
 
     try {
-      console.log('Creating bot game with difficulty:', difficulty);
+      // console.log('Creating bot game with difficulty:', difficulty);
       const response = await gameApi.createBotGame({
         settings: {
           playerCount: 2, // Bot games are always 2 players
